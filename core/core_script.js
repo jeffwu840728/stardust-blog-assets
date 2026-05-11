@@ -1,74 +1,73 @@
 /* ==========================================================================
    ★ 系統路由與動態資源載入器 (Asset Loader) ★
    ========================================================================== */
+
 function injectStyles(cssUrls) {
   cssUrls.forEach((url) => {
-    if (!document.querySelector(`link[href="${url}"]`)) {
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = url;
-      // 強制加上版本號避免快取
-      link.href = url.includes('?') ? `${url}&t=${new Date().getTime()}` : `${url}?v=1.1`;
-      document.head.appendChild(link);
-    }
-  });
-}
-
-function injectScripts(scriptUrls) {
-  scriptUrls.forEach((url) => {
-    const script = document.createElement("script");
-    script.src = url.includes('?') ? `${url}&t=${new Date().getTime()}` : `${url}?v=1.1`;
-    script.async = false; 
-    script.defer = true;
-    document.body.appendChild(script);
+    const cacheBusterUrl = url.includes('?') ? `${url}&t=${new Date().getTime()}` : `${url}?t=${new Date().getTime()}`;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = cacheBusterUrl;
+    document.head.appendChild(link);
   });
 }
 
 /**
- * 依據當前頁面標籤或標題，動態載入對應的遊戲資源
+ * 動態注入 <script> 標籤 (Promise 接力賽模式，確保 100% 循序執行)
  */
-function loadGameSpecificAssets() {
-  // 1. 嘗試從 meta 標籤抓取 (Blogger 預設或 SEO 佈景常見)
+async function injectScripts(scriptUrls) {
+  for (const url of scriptUrls) {
+    await new Promise((resolve, reject) => {
+      const cacheBusterUrl = url.includes('?') ? `${url}&t=${new Date().getTime()}` : `${url}?t=${new Date().getTime()}`;
+      const script = document.createElement("script");
+      script.src = cacheBusterUrl;
+      
+      script.onload = () => resolve();  // 這支載入完，才允許下一支載入
+      script.onerror = () => reject(new Error(`Failed to load script: ${url}`));
+      
+      document.body.appendChild(script);
+    });
+  }
+}
+
+async function loadGameSpecificAssets() {
   let tags = Array.from(document.querySelectorAll('meta[property="article:tag"], meta[name="keywords"]'))
     .flatMap((meta) => meta.content.split(",").map((s) => s.trim()));
-
-  // 2. 嘗試從 Blogger 預設的標籤 DOM 抓取 (抓取帶有 rel="tag" 或 class="label-link" 的連結)
   const labelLinks = Array.from(document.querySelectorAll('a.label-link, a[rel="tag"]')).map((a) => a.textContent.trim());
   tags = tags.concat(labelLinks);
-
-  // 3. 頁面標題防呆
   const pageTitle = document.title || "";
 
-  // --- [路由判斷區塊] ---
-  const isGunfire = tags.includes("槍火重生") || pageTitle.includes("槍火重生");
+  const isGunfire = tags.includes("鎗火重生") || pageTitle.includes("鎗火重生");
   const isArknights = tags.includes("明日方舟") || pageTitle.includes("明日方舟");
 
   if (isGunfire) {
-    console.log("SYS_LOG: [槍火重生] 協定確認，開始依序載入專屬武裝模組...");
+    console.log("SYS_LOG: [鎗火重生] 協定確認，啟動嚴格循序載入...");
     injectStyles([
-      "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_style.css?v=1"
+      "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_style.css"
     ]);
-    injectScripts([
-      // 注意：這裡的順序絕對不能反，有 async = false 護航，必定會先執行 assets
-      "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_assets.js?v=1",
-      "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_logic.js?v=1"
+    // 這裡用了 await，確保第一支 assets 載入完，才會載入第二支 logic
+    await injectScripts([
+      "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_assets.js",
+      "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_logic.js"
     ]);
   }
 
   if (isArknights) {
-    console.log("SYS_LOG: [明日方舟] 協定確認，連線至羅德島資料庫...");
-    // injectScripts([...]);
+    console.log("SYS_LOG: [明日方舟] 協定確認...");
+    // 暫時註解掉，等你把檔案傳上 GitHub 後再打開，就不會噴 404 錯誤了
+    // await injectScripts([
+    //   "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/arknights/arknights_assets.js",
+    //   "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/arknights/arknights_logic.js"
+    // ]);
   }
 }
 
 /* ==========================================================================
-   ★ 基礎系統與通用組件初始化 ★
+   ★ 啟動器與 UI 邏輯 ★
    ========================================================================== */
 function initStardustCore() {
-  // 0. 執行遊戲資源路由分發
   loadGameSpecificAssets();
 
-  // 1. 左側側邊欄抽屜 (Drawer) 開關邏輯
   const drawer = document.getElementById("my-left-drawer");
   const btn = document.getElementById("my-drawer-btn");
   let isDrawerOpen = false;
@@ -85,10 +84,8 @@ function initStardustCore() {
     }
   });
 
-  // 2. 深色模式 (Dark Mode) 切換邏輯
   const toggleBtn = document.getElementById("dark-mode-toggle");
   const body = document.body;
-
   if (toggleBtn) {
     const icon = toggleBtn.querySelector("i");
     if (body.classList.contains("dark-theme")) {
@@ -101,7 +98,6 @@ function initStardustCore() {
     });
   }
 
-  // 3. 全局實戰截圖點擊放大 (Lightbox)
   const lightbox = document.getElementById("combat-lightbox");
   const lightboxImg = document.getElementById("combat-lightbox-img");
   if (lightbox && lightboxImg) {
@@ -117,7 +113,6 @@ function initStardustCore() {
     lightbox.addEventListener("click", () => lightbox.classList.remove("show"));
   }
 
-  // 4. 自動產生 [NEW] 標籤
   const DAYS_FOR_NEW = 30;
   const now = new Date();
   const millisecondsPerDay = 24 * 60 * 60 * 1000;
@@ -137,24 +132,18 @@ function initStardustCore() {
     }
   });
 
-  // 5. 頂部導覽列搜尋框與首頁輪播圖 (依賴 jQuery)
-  if (typeof $ !== "undefined") {
+  // 【修復 jQuery 衝突】使用 window.jQuery 嚴格判斷
+  if (window.jQuery) {
     $("#search-icon").click(() => $("#nav-search").fadeToggle());
     const $carousel = $(".owl-carousel");
     if ($carousel.length) {
       $carousel.owlCarousel({
-        items: 1,
-        loop: true,
-        autoplay: true,
-        autoplayTimeout: 5000,
-        nav: true,
-        dots: false,
+        items: 1, loop: true, autoplay: true, autoplayTimeout: 5000, nav: true, dots: false,
       });
     }
   }
 }
 
-// 確保 DOM 準備好後執行
 if (document.readyState === "complete" || document.readyState === "interactive") {
   initStardustCore();
 } else {
