@@ -64,7 +64,7 @@ function loadGameSpecificAssets() {
 /* ==========================================================================
    ★ 基礎系統與通用組件初始化 ★
    ========================================================================== */
-document.addEventListener("DOMContentLoaded", () => {
+function initStardustCore() {
   // 0. 執行遊戲資源路由分發
   loadGameSpecificAssets();
 
@@ -152,4 +152,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
-});
+}
+
+// 確保 DOM 準備好後執行
+if (document.readyState === "complete" || document.readyState === "interactive") {
+  initStardustCore();
+} else {
+  document.addEventListener("DOMContentLoaded", initStardustCore);
+}
