@@ -1,28 +1,23 @@
 /* ==========================================================================
    ★ 系統路由與動態資源載入器 (Asset Loader) ★
    ========================================================================== */
-/**
- * 動態注入 <link> 標籤 (CSS) 的共用函式
- */
 function injectStyles(cssUrls) {
   cssUrls.forEach((url) => {
-    // 防呆：避免重複載入相同的 CSS
     if (!document.querySelector(`link[href="${url}"]`)) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
       link.href = url;
+      // 強制加上版本號避免快取
+      link.href = url.includes('?') ? `${url}&t=${new Date().getTime()}` : `${url}?v=1.1`;
       document.head.appendChild(link);
     }
   });
 }
-   /**
- * 動態注入 <script> 標籤的共用函式
- */
+
 function injectScripts(scriptUrls) {
   scriptUrls.forEach((url) => {
     const script = document.createElement("script");
-    script.src = url;
-    // 【核心修正】關閉非同步，強制瀏覽器嚴格按照陣列順序 (先 assets 再 logic) 執行！
+    script.src = url.includes('?') ? `${url}&t=${new Date().getTime()}` : `${url}?v=1.1`;
     script.async = false; 
     script.defer = true;
     document.body.appendChild(script);
