@@ -4,7 +4,7 @@
 
 function injectStyles(cssUrls) {
   cssUrls.forEach((url) => {
-    const cacheBusterUrl = url.includes('?') ? `${url}&t=${new Date().getTime()}` : `${url}?t=${new Date().getTime()}`;
+    const cacheBusterUrl = url.includes("?") ? `${url}&t=${new Date().getTime()}` : `${url}?t=${new Date().getTime()}`;
     const link = document.createElement("link");
     link.rel = "stylesheet";
     link.href = cacheBusterUrl;
@@ -18,21 +18,20 @@ function injectStyles(cssUrls) {
 async function injectScripts(scriptUrls) {
   for (const url of scriptUrls) {
     await new Promise((resolve, reject) => {
-      const cacheBusterUrl = url.includes('?') ? `${url}&t=${new Date().getTime()}` : `${url}?t=${new Date().getTime()}`;
+      const cacheBusterUrl = url.includes("?") ? `${url}&t=${new Date().getTime()}` : `${url}?t=${new Date().getTime()}`;
       const script = document.createElement("script");
       script.src = cacheBusterUrl;
-      
-      script.onload = () => resolve();  // 這支載入完，才允許下一支載入
+
+      script.onload = () => resolve(); // 這支載入完，才允許下一支載入
       script.onerror = () => reject(new Error(`Failed to load script: ${url}`));
-      
+
       document.body.appendChild(script);
     });
   }
 }
 
 async function loadGameSpecificAssets() {
-  let tags = Array.from(document.querySelectorAll('meta[property="article:tag"], meta[name="keywords"]'))
-    .flatMap((meta) => meta.content.split(",").map((s) => s.trim()));
+  let tags = Array.from(document.querySelectorAll('meta[property="article:tag"], meta[name="keywords"]')).flatMap((meta) => meta.content.split(",").map((s) => s.trim()));
   const labelLinks = Array.from(document.querySelectorAll('a.label-link, a[rel="tag"]')).map((a) => a.textContent.trim());
   tags = tags.concat(labelLinks);
   const pageTitle = document.title || "";
@@ -42,14 +41,9 @@ async function loadGameSpecificAssets() {
 
   if (isGunfire) {
     console.log("SYS_LOG: [鎗火重生] 協定確認，啟動嚴格循序載入...");
-    injectStyles([
-      "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_style.css"
-    ]);
+    injectStyles(["https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_style.css"]);
     // 這裡用了 await，確保第一支 assets 載入完，才會載入第二支 logic
-    await injectScripts([
-      "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_assets.js",
-      "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_logic.js"
-    ]);
+    await injectScripts(["https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_assets.js", "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_logic.js"]);
   }
 
   if (isArknights) {
@@ -87,14 +81,21 @@ function initStardustCore() {
   const toggleBtn = document.getElementById("dark-mode-toggle");
   const body = document.body;
   if (toggleBtn) {
-    const icon = toggleBtn.querySelector("i");
-    if (body.classList.contains("dark-theme")) {
+    const icon = toggleBtn.querySelector("i"); // 嘗試尋找裡面的 <i> 標籤
+
+    // 如果有找到 icon，且當前是深色模式，才去替換 icon
+    if (body.classList.contains("dark-theme") && icon) {
       icon.classList.replace("fa-moon", "fa-sun");
     }
+
     toggleBtn.addEventListener("click", () => {
       const isDark = body.classList.toggle("dark-theme");
       localStorage.setItem("blog-theme", isDark ? "dark" : "light");
-      icon.classList.replace(isDark ? "fa-moon" : "fa-sun", isDark ? "fa-sun" : "fa-moon");
+
+      // 切換時也要檢查 icon 存不存在
+      if (icon) {
+        icon.classList.replace(isDark ? "fa-moon" : "fa-sun", isDark ? "fa-sun" : "fa-moon");
+      }
     });
   }
 
@@ -138,7 +139,12 @@ function initStardustCore() {
     const $carousel = $(".owl-carousel");
     if ($carousel.length) {
       $carousel.owlCarousel({
-        items: 1, loop: true, autoplay: true, autoplayTimeout: 5000, nav: true, dots: false,
+        items: 1,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        nav: true,
+        dots: false,
       });
     }
   }
