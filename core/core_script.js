@@ -1,7 +1,62 @@
 /* ==========================================================================
+   ★ 系統路由與動態資源載入器 (Asset Loader) ★
+   ========================================================================== */
+/**
+ * 動態注入 <script> 標籤的共用函式
+ */
+function injectScripts(scriptUrls) {
+  scriptUrls.forEach((url) => {
+    const script = document.createElement("script");
+    script.src = url;
+    script.defer = true;
+    document.body.appendChild(script);
+  });
+}
+
+/**
+ * 依據當前頁面標籤或標題，動態載入對應的遊戲資源
+ */
+function loadGameSpecificAssets() {
+  // 1. 嘗試從 meta 標籤抓取 (Blogger 預設或 SEO 佈景常見)
+  let tags = Array.from(document.querySelectorAll('meta[property="article:tag"], meta[name="keywords"]'))
+    .flatMap((meta) => meta.content.split(",").map((s) => s.trim()));
+
+  // 2. 嘗試從 Blogger 預設的標籤 DOM 抓取 (抓取帶有 rel="tag" 或 class="label-link" 的連結)
+  const labelLinks = Array.from(document.querySelectorAll('a.label-link, a[rel="tag"]')).map((a) => a.textContent.trim());
+  tags = tags.concat(labelLinks);
+
+  // 3. 頁面標題防呆 (如果標籤沒抓到，檢查標題有沒有包含)
+  const pageTitle = document.title || "";
+
+  // --- [路由判斷區塊] ---
+  const isGunfire = tags.includes("槍火重生") || pageTitle.includes("槍火重生");
+  const isArknights = tags.includes("明日方舟") || pageTitle.includes("明日方舟");
+
+  if (isGunfire) {
+    console.log("SYS_LOG: [槍火重生] 協定確認，開始載入專屬武裝模組...");
+    injectScripts([
+      "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_assets.js?v=1",
+      "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_logic.js?v=1",
+    ]);
+  }
+
+  if (isArknights) {
+    console.log("SYS_LOG: [明日方舟] 協定確認，連線至羅德島資料庫...");
+    // 未來如果有明日方舟的檔案，把註解拿掉並改路徑即可
+    // injectScripts([
+    //   "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/arknights/arknights_assets.js?v=1",
+    //   "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/arknights/arknights_logic.js?v=1"
+    // ]);
+  }
+}
+
+/* ==========================================================================
    ★ 基礎系統與通用組件初始化 ★
    ========================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
+  // 0. 執行遊戲資源路由分發 (新增在這裡)
+  loadGameSpecificAssets();
+
   // 1. 左側側邊欄抽屜 (Drawer) 開關邏輯
   const drawer = document.getElementById("my-left-drawer");
   const btn = document.getElementById("my-drawer-btn");
