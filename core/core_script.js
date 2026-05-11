@@ -36,11 +36,11 @@ async function loadGameSpecificAssets() {
   tags = tags.concat(labelLinks);
   const pageTitle = document.title || "";
 
-  const isGunfire = tags.includes("鎗火重生") || pageTitle.includes("鎗火重生");
+  const isGunfire = tags.includes("槍火重生") || pageTitle.includes("槍火重生");
   const isArknights = tags.includes("明日方舟") || pageTitle.includes("明日方舟");
 
   if (isGunfire) {
-    console.log("SYS_LOG: [鎗火重生] 協定確認，啟動嚴格循序載入...");
+    console.log("SYS_LOG: [槍火重生] 協定確認，啟動嚴格循序載入...");
     injectStyles(["https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_style.css"]);
     // 這裡用了 await，確保第一支 assets 載入完，才會載入第二支 logic
     await injectScripts(["https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_assets.js", "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_logic.js"]);
