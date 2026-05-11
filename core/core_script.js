@@ -45,11 +45,11 @@ function loadGameSpecificAssets() {
   const pageTitle = document.title || "";
 
   // --- [路由判斷區塊] ---
-  const isGunfire = tags.includes("鎗火重生") || pageTitle.includes("鎗火重生");
+  const isGunfire = tags.includes("槍火重生") || pageTitle.includes("槍火重生");
   const isArknights = tags.includes("明日方舟") || pageTitle.includes("明日方舟");
 
   if (isGunfire) {
-    console.log("SYS_LOG: [鎗火重生] 協定確認，開始依序載入專屬武裝模組...");
+    console.log("SYS_LOG: [槍火重生] 協定確認，開始依序載入專屬武裝模組...");
     injectStyles([
       "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_style.css?v=1"
     ]);
