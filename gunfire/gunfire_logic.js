@@ -919,9 +919,14 @@ const gunfireApp = (function () {
     },
   };
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => StardustGunReb.init());
-  } else {
+  if (document.readyState === "complete" || document.readyState === "interactive") {
     StardustGunReb.init();
+  } else {
+    document.addEventListener("DOMContentLoaded", () => {
+      StardustGunReb.init();
+    });
   }
-})();
+
+  // 回傳模組介面 (可選)
+  return StardustGunReb;
+})(); // IIFE 結束
