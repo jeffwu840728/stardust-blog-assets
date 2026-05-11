@@ -2,6 +2,20 @@
    ★ 系統路由與動態資源載入器 (Asset Loader) ★
    ========================================================================== */
 /**
+ * 動態注入 <link> 標籤 (CSS) 的共用函式
+ */
+function injectStyles(cssUrls) {
+  cssUrls.forEach((url) => {
+    // 防呆：避免重複載入相同的 CSS
+    if (!document.querySelector(`link[href="${url}"]`)) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = url;
+      document.head.appendChild(link);
+    }
+  });
+}
+   /**
  * 動態注入 <script> 標籤的共用函式
  */
 function injectScripts(scriptUrls) {
@@ -36,6 +50,9 @@ function loadGameSpecificAssets() {
 
   if (isGunfire) {
     console.log("SYS_LOG: [鎗火重生] 協定確認，開始依序載入專屬武裝模組...");
+    injectStyles([
+      "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_style.css?v=1"
+    ]);
     injectScripts([
       // 注意：這裡的順序絕對不能反，有 async = false 護航，必定會先執行 assets
       "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_assets.js?v=1",
