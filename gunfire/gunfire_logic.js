@@ -99,7 +99,7 @@ const gunfireApp = (function () {
       if (!heroData) return;
 
       const name = heroData.getAttribute("data-hero-name") || "SYS_ERROR";
-      const dbHero = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.Gunfire?.Heroes?.[name]) || null;
+      const dbHero = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.gunfire?.Heroes?.[name]) || null;
 
       // 取得立繪 (優先讀取資料庫)
       let rawImg = heroData.getAttribute("data-hero-img");
@@ -207,7 +207,7 @@ const gunfireApp = (function () {
       const heroName = nameEl ? nameEl.textContent.trim() : "SYS_ERROR";
 
       // 2. 獲取資料庫中的英雄物件
-      const dbHero = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.Gunfire?.Heroes?.[heroName]) || null;
+      const dbHero = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.gunfire?.Heroes?.[heroName]) || null;
 
       let htmlOutput = "";
       dataItems.forEach((item) => {
@@ -315,7 +315,7 @@ const gunfireApp = (function () {
       // 1. [核心對接] 取得當前英雄名稱 (從剛產生的 <h2> 抓取)
       const nameEl = document.querySelector(".stardust-Gun-Reb-hp-name-row h2");
       const heroName = nameEl ? nameEl.textContent.trim() : "SYS_ERROR";
-      const dbHero = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.Gunfire?.Heroes?.[heroName]) || null;
+      const dbHero = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.gunfire?.Heroes?.[heroName]) || null;
 
       let htmlOutput = "";
       dataItems.forEach((item) => {
@@ -385,7 +385,7 @@ const gunfireApp = (function () {
       // 1. [核心對接] 取得當前英雄名稱 (從剛產生的 <h2> 抓取)
       const nameEl = document.querySelector(".stardust-Gun-Reb-hp-name-row h2");
       const heroName = nameEl ? nameEl.textContent.trim() : "SYS_ERROR";
-      const dbHero = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.Gunfire?.Heroes?.[heroName]) || null;
+      const dbHero = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.gunfire?.Heroes?.[heroName]) || null;
 
       grids.forEach((grid) => {
         const items = grid.querySelectorAll(".stardust-Gun-Reb-wiki-item");
@@ -528,7 +528,7 @@ const gunfireApp = (function () {
       if (items.length === 0) return;
 
       // 1. 取得全局成就資料庫
-      const dbAch = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.Gunfire?.Global?.achievement) || {};
+      const dbAch = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.gunfire?.Global?.achievement) || {};
 
       let cardsHtml = `<div class="stardust-Gun-Reb-ach-grid-2col">`;
 
