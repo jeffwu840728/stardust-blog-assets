@@ -8,6 +8,8 @@ function injectScripts(scriptUrls) {
   scriptUrls.forEach((url) => {
     const script = document.createElement("script");
     script.src = url;
+    // 【核心修正】關閉非同步，強制瀏覽器嚴格按照陣列順序 (先 assets 再 logic) 執行！
+    script.async = false; 
     script.defer = true;
     document.body.appendChild(script);
   });
@@ -25,28 +27,25 @@ function loadGameSpecificAssets() {
   const labelLinks = Array.from(document.querySelectorAll('a.label-link, a[rel="tag"]')).map((a) => a.textContent.trim());
   tags = tags.concat(labelLinks);
 
-  // 3. 頁面標題防呆 (如果標籤沒抓到，檢查標題有沒有包含)
+  // 3. 頁面標題防呆
   const pageTitle = document.title || "";
 
   // --- [路由判斷區塊] ---
-  const isGunfire = tags.includes("槍火重生") || pageTitle.includes("槍火重生");
+  const isGunfire = tags.includes("鎗火重生") || pageTitle.includes("鎗火重生");
   const isArknights = tags.includes("明日方舟") || pageTitle.includes("明日方舟");
 
   if (isGunfire) {
-    console.log("SYS_LOG: [槍火重生] 協定確認，開始載入專屬武裝模組...");
+    console.log("SYS_LOG: [鎗火重生] 協定確認，開始依序載入專屬武裝模組...");
     injectScripts([
+      // 注意：這裡的順序絕對不能反，有 async = false 護航，必定會先執行 assets
       "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_assets.js?v=1",
-      "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_logic.js?v=1",
+      "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/gunfire/gunfire_logic.js?v=1"
     ]);
   }
 
   if (isArknights) {
     console.log("SYS_LOG: [明日方舟] 協定確認，連線至羅德島資料庫...");
-    // 未來如果有明日方舟的檔案，把註解拿掉並改路徑即可
-    // injectScripts([
-    //   "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/arknights/arknights_assets.js?v=1",
-    //   "https://raw.githack.com/jeffwu840728/stardust-blog-assets/main/arknights/arknights_logic.js?v=1"
-    // ]);
+    // injectScripts([...]);
   }
 }
 
@@ -54,7 +53,7 @@ function loadGameSpecificAssets() {
    ★ 基礎系統與通用組件初始化 ★
    ========================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
-  // 0. 執行遊戲資源路由分發 (新增在這裡)
+  // 0. 執行遊戲資源路由分發
   loadGameSpecificAssets();
 
   // 1. 左側側邊欄抽屜 (Drawer) 開關邏輯
