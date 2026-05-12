@@ -877,7 +877,15 @@ div.post-body .stardust-Gun-Reb-ach-card input[type="checkbox"] {
   top: 2px;
   width: 26px;
   height: 26px;
-  opacity: 0;
+  /* 1. 強制透明度，抵禦 Blogger 權重 */
+  opacity: 0 !important;
+  /* 2. 徹底拔除瀏覽器與平台的預設表單外觀 */
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  /* 3. 防止 Blogger 強制塞入白色背景或邊框 */
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
   cursor: pointer;
   z-index: 2;
   margin: 0;
@@ -2391,4 +2399,3 @@ div.post-body .stardust-Gun-Reb-logic-box b {
     margin: 0 20px 30px 20px;
   }
 }
-
