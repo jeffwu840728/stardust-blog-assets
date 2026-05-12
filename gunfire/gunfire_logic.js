@@ -21,6 +21,13 @@ const gunfireApp = (function () {
       this.initTabs();
       this.initHoloTips();
       this.initDragToScroll();
+
+      // 找出這篇文章中所有 stardust 開頭的元素並加上顯現標籤
+      document.querySelectorAll('[id^="stardust-"], [class^="stardust-"]').forEach((el) => {
+        el.classList.add("stardust-render-ready");
+      });
+
+      console.log("SYS_LOG: [槍火重生] 渲染完畢，視覺屏障已解除。");
     },
 
     /**
