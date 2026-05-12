@@ -2391,7 +2391,4 @@ div.post-body .stardust-Gun-Reb-logic-box b {
     margin: 0 20px 30px 20px;
   }
 }
-[class^="stardust-"] i:before, 
-[id^="stardust-"] i:before {
-    content: none !important;
-}
+
