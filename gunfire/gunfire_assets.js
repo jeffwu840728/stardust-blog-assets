@@ -10,7 +10,11 @@ window.STARDUST_ASSETS.gunfire = {
         驟雨: { kind: "法杖", img: "https://.../weapon_rain.webp", desc: "單體爆發王者" },
       },
       scroll: {
-        元素奧能: { tier: "rare", img: "網址...", desc: "增加元素異常機率..." },
+        //藍色
+        野蠻拳套: { tier: "normal", img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhBZ0n8jyVSrrd-4owI-zXXDMKfS69aEmYcsVtTRYkcQlMlmxZkkqE2J87dNKbjzm07bDz_v81ncaA-qCEgzki0XKnq2SxCH0hij2ZTRluzt2ud9M3gCRcUma2GfXaaWR-qhkVq4SNcvxIK41I9eJ7glPiQ6gsR33mi1Zs3vmVVF9pzRu0bg4p1uDa1nSU/s64/Brutal_Gloves.webp", desc: "沒爆擊時增加武器技能傷害" },
+        //紫色
+        意外過載: { tier: "rare", img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0tGESVZV3X7a4IGl2RB6UyM3-a82mPcUwYBemPzVy2AvOF9sXyYj8imqAXB5rbzdAI0QABwuw12Uga37LxURrdye6TRkZwq86qDHWF36tBwgKrp2wx5tLPNirXrJB_QmtZ92SN3Hfd13ghAC6X5fzNWo54rHa5xI9WigujjL9s0d8mhTKJn8Id1XQzko/s64/Brutal_Gloves.webp", desc: "有機率增加技能傷害" },
+        //金色
         靈貓九命: { tier: "legendary", img: "網址...", desc: "受傷上限固定為14%" },
         推進器: { tier: "normal", img: "網址...", desc: "衝刺次數+1" },
         破邪護符: { tier: "cursed", img: "網址...", desc: "詛咒密卷：效果說明..." },

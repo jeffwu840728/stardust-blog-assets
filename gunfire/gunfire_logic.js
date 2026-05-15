@@ -459,7 +459,7 @@ const gunfireApp = (function () {
     },
 
     /**
-     * [模組] 連接/羈絆卡片渲染器 (支援所需晶片條件拆解)
+     * [模組] 連接/羈絆卡片渲染器 (拔除文字標籤，放大圖片，並支援密卷品質分色)
      */
     renderLinkCards() {
       const container = document.getElementById("stardust-Gun-Reb-link-container");
@@ -467,12 +467,30 @@ const gunfireApp = (function () {
       const dataItems = container.querySelectorAll(".stardust-Gun-Reb-link-item");
       if (dataItems.length === 0) return;
 
+      const nameEl = document.querySelector(".stardust-Gun-Reb-hp-name-row h2");
+      const heroName = nameEl ? nameEl.textContent.trim() : "SYS_ERROR";
+      const dbHero = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.gunfire?.Heroes?.[heroName]) || null;
+      const dbGlobal = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.gunfire?.Global) || null;
+
+      // [升級] 同時獲取圖片與品質(Tier)
+      const getDbItemInfo = (itemName) => {
+        if (!itemName) return { img: null, tier: null };
+        const cleanName = itemName.replace(/\s*Lv\.\d+/g, "").trim();
+
+        if (dbHero?.ascensions?.[cleanName]) return { img: dbHero.ascensions[cleanName].img, tier: null };
+        if (dbHero?.blessings?.[cleanName]) return { img: dbHero.blessings[cleanName].img, tier: null };
+        // 抓取密卷時，把 tier 也抓出來
+        if (dbGlobal?.scroll?.[cleanName]) return { img: dbGlobal.scroll[cleanName].img, tier: dbGlobal.scroll[cleanName].tier };
+        if (dbGlobal?.weapon?.[cleanName]) return { img: dbGlobal.weapon[cleanName].img, tier: null };
+
+        return { img: null, tier: null };
+      };
+
       let htmlOutput = "";
 
       dataItems.forEach((item) => {
         const theme = item.getAttribute("data-theme") || "default";
         const type = item.getAttribute("data-type") || "blessing";
-        const typeText = item.getAttribute("data-type-text") || "靈佑";
         const topName = item.getAttribute("data-top-name") || "";
         const h4Tag = item.querySelector("h4");
         const title = h4Tag ? h4Tag.textContent.trim() : item.getAttribute("data-title") || "未命名連接";
@@ -482,9 +500,23 @@ const gunfireApp = (function () {
 
         const themeVar = this.getThemeColor(theme);
         const topClass = type === "unbound" ? "stardust-Gun-Reb-clk-top is-unbound" : "stardust-Gun-Reb-clk-top";
-        const iconClass = type === "unbound" ? "fa-unlock" : "fa-gem";
 
-        // 解析需求道具條件：格式為 "道具名稱|req, 道具名稱|opt" (req=必備, opt=可選)
+        // 頂部圖片 (拿掉文字標籤，只留圖片與名稱)
+        const fallbackTopImg = `https://placehold.co/80x80/111/ff8c00?text=${encodeURIComponent(topName)}`;
+        const { img: topImg } = getDbItemInfo(topName);
+        const topImgUrl = topImg || fallbackTopImg;
+
+        let topNameHtml = `<span class="stardust-Gun-Reb-b-name">${topName}</span>`;
+        if (type !== "unbound" && topName) {
+          topNameHtml = `
+             <div class="stardust-Gun-Reb-clk-top-info">
+               <img src="${topImgUrl}" class="stardust-Gun-Reb-clk-top-img" alt="${topName}" onerror="this.src='${fallbackTopImg}'" />
+               <span class="stardust-Gun-Reb-b-name">${topName}</span>
+             </div>
+           `;
+        }
+
+        // 解析需求道具條件，並賦予專屬品質顏色
         let chipsHtml = "";
         if (reqItemsRaw) {
           const itemsArr = reqItemsRaw.split(",");
@@ -494,17 +526,37 @@ const gunfireApp = (function () {
             const itemType = parts[1] || "opt";
             const isReq = itemType === "req";
             const chipClass = isReq ? "stardust-Gun-Reb-req-chip is-req" : "stardust-Gun-Reb-req-chip is-opt";
-            const chipIcon = isReq ? "fa-fire" : "fa-scroll";
 
-            chipsHtml += `<span class="${chipClass}"><i class="fa-solid ${chipIcon}"></i>${itemName}</span>`;
+            const fallbackChipImg = `https://placehold.co/60x60/111/00e5ff?text=${encodeURIComponent(itemName.substring(0, 2))}`;
+            const { img: chipImg, tier: chipTier } = getDbItemInfo(itemName);
+            const chipImgUrl = chipImg || fallbackChipImg;
+
+            // [新增] 依據 Tier 配置顏色變數
+            let tierStyle = "";
+            if (chipTier) {
+              const tierColors = {
+                rare: "#b026ff", // 紫色
+                legendary: "#ffcc00", // 金色
+                normal: "#00e5ff", // 藍色
+                cursed: "#ff3333", // 紅色
+              };
+              const color = tierColors[chipTier.toLowerCase()];
+              if (color) tierStyle = `style="--chip-tier-color: ${color};"`;
+            }
+
+            chipsHtml += `
+              <span class="${chipClass}" ${tierStyle}>
+                <img src="${chipImgUrl}" class="stardust-Gun-Reb-req-chip-img" alt="${itemName}" onerror="this.src='${fallbackChipImg}'" />
+                ${itemName}
+              </span>
+            `;
           });
         }
 
         htmlOutput += `
           <div class="stardust-Gun-Reb-link-card" style="--stardust-Gun-Reb-card-theme: ${themeVar};">
             <div class="${topClass}">
-              <span class="stardust-Gun-Reb-b-tag"><i class="fa-solid ${iconClass}" style="margin-right: 4px"></i>${typeText}</span>
-              <span class="stardust-Gun-Reb-b-name">${topName}</span>
+              ${topNameHtml}
             </div>
             <div class="stardust-Gun-Reb-clk-body">
               <div class="stardust-Gun-Reb-clk-header">

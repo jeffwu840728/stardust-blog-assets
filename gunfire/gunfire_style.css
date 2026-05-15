@@ -500,6 +500,20 @@ div.post-body .stardust-Gun-Reb-clk-top .stardust-Gun-Reb-b-tag {
   border-radius: 4px;
   box-shadow: 0 0 10px color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 50%, transparent);
 }
+div.post-body .stardust-Gun-Reb-clk-top-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+div.post-body .stardust-Gun-Reb-clk-top-img {
+  width: 46px; /* ★ 從 28px 放大到 46px */
+  height: 46px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 50%, transparent);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 40%, transparent);
+}
 
 div.post-body .stardust-Gun-Reb-clk-top .stardust-Gun-Reb-b-name {
   font-family: "Noto Sans TC", sans-serif;
@@ -615,12 +629,12 @@ div.post-body .stardust-Gun-Reb-req-chip {
   align-items: center;
   justify-content: flex-start;
   font-family: "Noto Sans TC", sans-serif;
-  font-size: 15px; /* 字體微調避免過長名稱被截斷 */
+  font-size: 15px; 
   font-weight: 600;
   color: var(--color-text-primary);
   background: var(--color-surface-tertiary);
   border: 1px solid var(--color-border-primary);
-  padding: 6px 10px;
+  padding: 4px 10px 4px 4px; /* 左側留白再縮小一點點 */
   border-radius: 6px;
   transition: all 0.2s ease;
   width: 100%;
@@ -630,13 +644,22 @@ div.post-body .stardust-Gun-Reb-req-chip {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-div.post-body .stardust-Gun-Reb-req-chip i {
-  margin-right: 6px;
-  font-size: 12px;
+div.post-body .stardust-Gun-Reb-req-chip-img {
+  width: 32px; /* ★ 從 20px 放大到 32px */
+  height: 32px;
+  border-radius: 4px;
+  object-fit: cover;
+  margin-right: 8px;
   flex-shrink: 0;
+  background-color: var(--color-surface-darker);
+  /* 若有賦予品質顏色，就使用品質色，否則使用預設灰框 */
+  border: 1px solid var(--chip-tier-color, color-mix(in srgb, var(--color-border-primary) 60%, transparent));
+  box-shadow: 0 0 5px var(--chip-tier-color, transparent);
 }
-
+div.post-body .stardust-Gun-Reb-req-chip.is-req .stardust-Gun-Reb-req-chip-img {
+  border-color: var(--chip-tier-color, color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 60%, transparent));
+  box-shadow: 0 0 8px var(--chip-tier-color, color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 40%, transparent));
+}
 /* 必選槽 (Required) */
 div.post-body .stardust-Gun-Reb-req-chip.is-req {
   border: 1px solid color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 30%, transparent);
@@ -645,9 +668,6 @@ div.post-body .stardust-Gun-Reb-req-chip.is-req {
   color: var(--color-text-heading);
 }
 
-div.post-body .stardust-Gun-Reb-req-chip.is-req i {
-  color: var(--stardust-Gun-Reb-card-theme);
-}
 
 /* 備選槽 (Optional) */
 div.post-body .stardust-Gun-Reb-req-chip.is-opt {
@@ -656,6 +676,15 @@ div.post-body .stardust-Gun-Reb-req-chip.is-opt {
   background: transparent;
   color: var(--color-text-secondary);
   opacity: 0.85;
+}
+div.post-body .stardust-Gun-Reb-req-chip.is-opt .stardust-Gun-Reb-req-chip-img {
+  /* 可選裝備圖示：若無品質顏色則預設暗化 */
+  border-color: var(--chip-tier-color, color-mix(in srgb, var(--color-text-secondary) 40%, transparent));
+  box-shadow: 0 0 5px var(--chip-tier-color, transparent);
+  opacity: 0.9;
+}
+div.post-body .stardust-Gun-Reb-req-chip.is-opt:hover .stardust-Gun-Reb-req-chip-img {
+  opacity: 1;
 }
 
 div.post-body .stardust-Gun-Reb-req-chip.is-opt:hover {
@@ -1014,27 +1043,53 @@ div.post-body .stardust-Gun-Reb-ach-card input:checked ~ .stardust-Gun-Reb-ach-s
 
 /* --- 4. 下方情報攻略面板 --- */
 div.post-body .stardust-Gun-Reb-guide-panel {
-  margin-left: 55px;
-  margin-right: 20px;
-  padding: 15px 20px;
+  /* 維持放大後的寬度與左移對齊 */
+  margin-left: 32px;  
+  margin-right: 5px;  
+  margin-top: 5px;
+  
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; 
+
+  padding: 12px 20px; 
   background: color-mix(in srgb, var(--color-surface-secondary) 40%, transparent);
   border: 1px solid var(--color-border-primary);
   border-left: 3px solid var(--color-brand-cyan);
   border-radius: 0 6px 6px 6px;
   position: relative;
+  transition: all 0.3s ease;
 }
+
+/* L型延伸連接線：回歸原本灰色，並移除過渡動畫與發光效果 */
 div.post-body .stardust-Gun-Reb-guide-panel::before {
   content: "";
   position: absolute;
-  top: -24px;
-  left: -20px;
-  width: 17px;
+  top: -24px;   
+  left: -12px;  
+  width: 12px;  
   height: 30px;
+  
+  /* 使用原本的次要文字灰色 */
   border-left: 2px solid color-mix(in srgb, var(--color-text-secondary) 40%, transparent);
   border-bottom: 2px solid color-mix(in srgb, var(--color-text-secondary) 40%, transparent);
   border-bottom-left-radius: 6px;
   pointer-events: none;
 }
+
+/* 僅保留面板本身的背景微光 HOVER，不連動 L 型線條 */
+div.post-body .stardust-Gun-Reb-ach-card:hover + .stardust-Gun-Reb-guide-panel {
+  border-color: color-mix(in srgb, var(--color-brand-cyan) 30%, transparent);
+  background: color-mix(in srgb, var(--color-brand-cyan) 5%, var(--color-surface-secondary));
+}
+
+/* 移除上一版新增的 L 線 HOVER 發光特效 */
+div.post-body .stardust-Gun-Reb-ach-card:hover + .stardust-Gun-Reb-guide-panel::before {
+  border-color: color-mix(in srgb, var(--color-text-secondary) 40%, transparent) !important;
+  box-shadow: none !important;
+}
+
+/* 文字樣式維持 */
 div.post-body .stardust-Gun-Reb-guide-header {
   font-family: "Share Tech Mono", "Noto Sans TC", sans-serif;
   font-size: 13px;
@@ -1046,15 +1101,12 @@ div.post-body .stardust-Gun-Reb-guide-header {
   gap: 8px;
   letter-spacing: 1px;
 }
+
 div.post-body .stardust-Gun-Reb-guide-content {
   font-size: 16px;
   color: var(--color-text-secondary);
   line-height: 1.6;
   margin: 0;
-}
-div.post-body .stardust-Gun-Reb-guide-content b {
-  color: var(--color-text-heading);
-  font-weight: 600;
 }
 
 /* 情報面板標籤 */
