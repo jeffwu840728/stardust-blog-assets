@@ -1041,9 +1041,8 @@ div.post-body .stardust-Gun-Reb-ach-card input:checked ~ .stardust-Gun-Reb-ach-s
   display: block;
 }
 
-/* --- 4. 下方情報攻略面板 --- */
+/* --- 4. 下方情報攻略面板 (系統主色適應版) --- */
 div.post-body .stardust-Gun-Reb-guide-panel {
-  /* 維持放大後的寬度與左移對齊 */
   margin-left: 32px;  
   margin-right: 5px;  
   margin-top: 5px;
@@ -1055,13 +1054,16 @@ div.post-body .stardust-Gun-Reb-guide-panel {
   padding: 12px 20px; 
   background: color-mix(in srgb, var(--color-surface-secondary) 40%, transparent);
   border: 1px solid var(--color-border-primary);
-  border-left: 3px solid var(--color-brand-cyan);
+  
+  /* ★ 修改：左側裝飾條改為系統主色 */
+  border-left: 3px solid var(--sys-accent-color);
+  
   border-radius: 0 6px 6px 6px;
   position: relative;
   transition: all 0.3s ease;
 }
 
-/* L型延伸連接線：回歸原本灰色，並移除過渡動畫與發光效果 */
+/* L型延伸連接線維持灰色，保持低調 */
 div.post-body .stardust-Gun-Reb-guide-panel::before {
   content: "";
   position: absolute;
@@ -1069,37 +1071,32 @@ div.post-body .stardust-Gun-Reb-guide-panel::before {
   left: -12px;  
   width: 12px;  
   height: 30px;
-  
-  /* 使用原本的次要文字灰色 */
   border-left: 2px solid color-mix(in srgb, var(--color-text-secondary) 40%, transparent);
   border-bottom: 2px solid color-mix(in srgb, var(--color-text-secondary) 40%, transparent);
   border-bottom-left-radius: 6px;
   pointer-events: none;
 }
 
-/* 僅保留面板本身的背景微光 HOVER，不連動 L 型線條 */
-div.post-body .stardust-Gun-Reb-ach-card:hover + .stardust-Gun-Reb-guide-panel {
-  border-color: color-mix(in srgb, var(--color-brand-cyan) 30%, transparent);
-  background: color-mix(in srgb, var(--color-brand-cyan) 5%, var(--color-surface-secondary));
-}
-
-/* 移除上一版新增的 L 線 HOVER 發光特效 */
-div.post-body .stardust-Gun-Reb-ach-card:hover + .stardust-Gun-Reb-guide-panel::before {
-  border-color: color-mix(in srgb, var(--color-text-secondary) 40%, transparent) !important;
-  box-shadow: none !important;
-}
-
-/* 文字樣式維持 */
+/* 面板標題 */
 div.post-body .stardust-Gun-Reb-guide-header {
   font-family: "Share Tech Mono", "Noto Sans TC", sans-serif;
   font-size: 13px;
   font-weight: bold;
-  color: var(--color-brand-cyan);
+  
+  /* ★ 修改：標題文字改為系統主色，增加專業感 */
+  color: var(--sys-accent-color);
+  
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   gap: 8px;
   letter-spacing: 1px;
+}
+
+/* 當滑鼠經過成就卡片時，下方的面板會跟著系統色輕微發光 */
+div.post-body .stardust-Gun-Reb-ach-card:hover + .stardust-Gun-Reb-guide-panel {
+  border-color: color-mix(in srgb, var(--sys-accent-color) 30%, transparent);
+  background: color-mix(in srgb, var(--sys-accent-color) 5%, var(--color-surface-secondary));
 }
 
 div.post-body .stardust-Gun-Reb-guide-content {

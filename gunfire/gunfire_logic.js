@@ -635,7 +635,7 @@ const gunfireApp = (function () {
                  ? `
              <div class="stardust-Gun-Reb-guide-panel">
                <div class="stardust-Gun-Reb-guide-header">
-                 <i class="fa-solid fa-terminal"></i> STRATEGY_INTEL // 系統攻略提示
+                 <i class="fa-solid fa-terminal"></i>  獲取方式教學:
                </div>
                <p class="stardust-Gun-Reb-guide-content">${guideText}</p>
              </div>`
