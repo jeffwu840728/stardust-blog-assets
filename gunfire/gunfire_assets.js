@@ -1539,8 +1539,8 @@ window.STARDUST_ASSETS.gunfire = {
     },
     墨咻: {
       Role: {
-        呦呦: {
-          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjk4iDscRNmai25GhgfFPLXp0Hh5TWLj4sCCeuZj5iovsZXVPQEkQwoF-QERoM8nT06c07rXC5RiBL87JB9EJtRLdZAOEt7FsdRSGwb2PTTmOfs54vN14_zXzLHnKjEKBR6pGQA5juOKbEofim0whgtIDacs4_XcPg2iMmx6fZ8JswBON8vx-f6q-7nwEg/s788/youyou.webp",
+        墨咻: {
+          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg9rOqeeEOum7EVZ9fs8t-A-5joLlnlJnEjgEIpmOcntTIM7rA0I3NvKrjP2u-zJ2_u69NEyGS2yysEjNL9cZLvLKrx090cKGmkYZgxYCHVpQE0HIcn489P9NJP9CP0oI2rRJ8GmeatPBiI6nCwRHHSRZWh4WVKzGcmRPEAm_-iA39MXpFCwT8mc6Yjyok/s789/moxiu.webp",
         },
       },
       skills: {
@@ -1555,87 +1555,87 @@ window.STARDUST_ASSETS.gunfire = {
       },
       talents: {
         墨韻悠揚: {
-          img: "https://placehold.co/100x100/111/00e5ff?text=墨韻悠揚",
+          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj13nJw3VI2wpgBoC4HsG0kpRamw6QyV9KdjlNErbC4y_wA3P3mu-937dhRB64uHYlFQSwuocwx8mW5ppkiWV398nN2hUFSS4U3nFCKux96qU0ojTbhse5S8h65VAoKh3771q3RwQw-pQ7i0p7J_48IdKTEs_ZnsNNJpOT497LiFhDeSnrTzbu0OlGnYEs/s70/Talent_Lingering_Rhythm.webp",
           desc: "“墨韻”每變化5點，移動速度增加4%，持續12秒，最高15層。墨靈狀態下，該天賦的移速加成翻倍。",
         },
         靈墨交融: {
-          img: "https://placehold.co/100x100/111/00e5ff?text=靈墨交融",
+          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjTyp5B3GfSfkvlAm8nSJ0Pl1bpRMbkVtSdcxY5e3K0jS5nyExKYNhOef8IB0Fi4NpxjnP0turfiNV7NxWjCz5doLFlRTsJgpC8vOA4Y9BCEd8pB45d0Dheb9XLy2LoVeFdtnl1rJX1Paqf19RpMkR3liNZ0ocr-WtacCvHeUhwIdpYUWY50Hq7_t7hfl4/s70/Talent_Ink_Spirit_Fusion.webp",
           desc: "【墨鋒四散】的基礎傷害+150，墨靈化身期間每拾取1顆墨珠，變身持續時間回復3秒。",
         },
         墨御護體: {
-          img: "https://placehold.co/100x100/111/00e5ff?text=墨御護體",
+          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiSsbpJn_QF6uiOe_4yH4SXv3S_Id9BGUJPr-uGn5cKNVOevBD8B9iZWKAIjM12lAuNgm1KyDrPHvthmilgeHKZJON38oQL9uXl18kXRytjU0ffX_W6k7-yPUMaNUh7377hB22FYXM3MxrLetOSHfqtNmK1n3-18DHoAlbUJfi24YZVW9FmTI917OdX_o8/s70/Talent_Ink_Armor.webp",
           desc: "護盾上限+20。護盾值為100%時，傷害抗性增加30%。",
         },
         靈犀共鑒: {
-          img: "https://placehold.co/100x100/111/00e5ff?text=靈犀共鑒",
+          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi_BcJThZ3stuHM84fPrfcU9aPVkCRty44UnBgZSmM1q5wkMP0hThSeK7u4uZXMf_peEC_PuPVgTr7zevKKG_qS6Wn-aXFTblOj2-hMqxBxiR0FsUhuSsEC2ZhOPPuurJjAeoljMhy4ASGwIAov5DyG8l89ZeUwiNJd9zIKsympPFbIJQiGqwM_kG7BHKo/s70/Talent_Artist%2527s_Vision.webp",
           desc: "獲得擁有武器技能的武器時，專屬銘刻出現的機率提高60%。",
         },
         臨摹之力: {
-          img: "https://placehold.co/100x100/111/00e5ff?text=臨摹之力",
+          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjKXsqNNDioGawboOKA3Vr7UNXoeCcgDhRGHGPq6XGkRX1DgNL-ZhzjRQ5pahh-8Y2otNVZR0LXv37OhmxiYr35R5L2UkHJyUEfBKHwpGnUWUhE3It7xZMk_QPsjh6JlGyRMJ0ZuJbqFGoLkydESs_wQ50nerLIdXXbCKAfQvu8ohQLgw_Q7FKrbT9n7_E/s70/Talent_Imitation.webp",
           desc: "當覺醒的總等級不低於6級時，可在英雄界面選擇1個已啟用的覺醒提升1級。",
         },
       },
       ascensions: {
         //覺醒分支一
-        蠱術精進: {
+        墨潮奔湧: {
           branch: 1,
-          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinYYoy5_5DvOowGgm66vIU_-oQDaJcQY31cTDViD_t2yI_x8E7thU3DQ3ldYpQuLEQdK-tbtQnmLK_nKjqkVgOeCxRKXm-gYAvGw0wOqSofP07yh6cwN9JbgIfb2aJ2zGJ-tFY7sgDIyeel771hgOK2tu4idrWS4_Y6ZIQcLvWHGYQGRgkdJErTx2wAP0/s64/Ascension_Parasite_Mastery.webp",
-          desc: "寄生流核心增傷",
+          img: "",
+          desc: "變身流核心增傷",
         },
-        呼朋引伴: {
+        蝕墨殘痕: {
           branch: 1,
-          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgXGC_rtwnHMX4oAvPbv9L7Nz48fFHL4BX_DKqvfnr_eIfV7WS7sSbx6u0nzl6K1WInHzAyu4XC6zpcMYstwVL2p0uCfLjuEtQOeBncEtK3hWLQ12raOeNsSFlOMo2Istbw1wuB2wEFyC2TtmzBgT_TghG1Dx2mXs2GqzD1gLcHNvuFdxpHRPj9Lm2NbdA/s64/Ascension_Allies_Summon.webp",
-          desc: "靈氣連接選擇優先度高",
+          img: "",
+          desc: "dot傷害帶擴散",
         },
-        迅猛侵蝕: {
+        斑斕濁色: {
           branch: 1,
-          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhC8dqbeTEDb-uVSwVNHAtBAscMqdfab0s1SM0aVWQqRcrVhnGtLJCvIJ4IsnEPoeHSqFTQ8_m_G0YrGLVWi_pjBaJXpJ1M7AqLpXQjzb66LNy-vFws3kFFARb_S1vf2q7w0jIesbdDKOEUOKhlQCPiLHLfTZsn7j_aa7YksoJqPUacR1iogeKeS_5uxHw/s64/Ascension_Rapid_Decay.webp",
+          img: "",
           desc: "高頻觸發次要傷害",
         },
-        自然輪迴: {
+        墨域擴張: {
           branch: 1,
-          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4lN3_G4951fseyYOC4ZDdvGhrIDzM3lu3sU9X7WuWb3zRh4X6hvpdogbE1Q2U5Upfo6g_lTWJlH_Fwg1ZarpFiTeF3vWgqQU4Lf6gINQj6fpgIFSYzBrU53jYR8-e8k5fEDR_8L7j1Y9tQppRhY-TyzB7ye_eXP1vsTYdX_deX_1PaE9orcakDVjRZaQ/s64/Ascension_Nature_Reincarnation.webp",
+          img: "",
           desc: "機率性控場與增傷",
         },
-        森林餽贈: {
+        珠連墨續: {
           branch: 1,
-          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhwb6WYGDVpUSVggpgSbZT-m7RbGrxkHztlnEu4wKhoqqgkVUwmsWkVaLIqPZpx6lCE7GB8cI8L0j7-e-hdt0HlAoEue42Geh4eNa2HVWgwahAr8QB50upVhm9h6bvrHJUBpJAVqEHzuhv4kjDMEbjVtRZtU8CghEgFBcTruLGY56BiNYcQsdQIFrCfwwk/s64/Ascension_Forest_Boon.webp",
+          img: "",
           desc: "次要技能補給",
         },
-        孢塵擴散: {
+        乾坤墨移: {
           branch: 1,
-          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9q2gstcS1dLI5py7MPNEfmalgdcwct1IIKOse1qoZ2FeQsv4fokA5qaRmSu7rqFjW71IYSVIXHeAazIFb_pjvxuw9sx_n-0XyQiyfsJnMFYhbLw9sxUgwGVlSl93TcYJ2Pbw0NsXIQA5N9onVcS6Cs-qB6k7ZUxOdB7ezqOTC4zue6WYXZZhz88RXHiQ/s64/Ascension_Spore_Spread.webp",
+          img: "",
           desc: "強化群體傳播能力",
         },
         //覺醒分支二
-        靈植強化: {
+        筆力遒勁: {
           branch: 2,
-          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjl4AD7Xr8W1Vd1JfXq_xxQNHpZ84JumPUiq7Tai0kAyMu78BeKn92WeoGiszZfCVVk_1VuGWfkAPXYFT29IdRhiEuyKCpztDqY7iLmu4eTUhdXJa8VTINgi_3sEKK4JlGv7mvxRYxUCLQhg68l4hIQ5jnbhWgURulLN_u7pniDlFpwRWjcR-kXv2Y0rCw/s64/Ascension_Spirit_Enhancement.webp",
+          img: "",
           desc: "提升木靈基礎傷害",
         },
-        雨後春筍: {
+        聚墨齊揮: {
           branch: 2,
-          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgnThXDeUxFjnBf7Nvu_i2MwsUnuHQ8OFGsmnRUPQMgeMLjiuKWROhqoX6YxlR0guccw0RCitUaSuWNVtWnkpH14J34KGhlPjR4g0_QSZCXVSpgJDYNjuxYUNh1DfywKIQeWbq6PFm6T1Sts8nAdoLVzzD_HRoNfeFXZdaVODiNvwpe3_qb_g-m4-ODi6Y/s64/Ascension_Vernal_Emergence.webp",
-          desc: "減輕冷卻壓力",
+          img: "",
+          desc: "根據場上【清域】的面積大小，來大幅增幅【揮墨成卷】的傷害。",
         },
-        生意盎然: {
+        墨幕鋪陳: {
           branch: 2,
-          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiK2yqAOoJc6OKR4rTZPoe1GzjXn376LVSpNpwIiGp0AKGv5GUF6tmzeui4RegvOZtIvSp1TVbS7jDcJpGQwfLr5DD45DkNKVNGYBQVB1CIVi5XX4R6NWM_urHbC-mTR-bHCbjf2m9_YY9gh9UOhFCzXiQRmUXbVSHroLRDu8YkTACjGPVUIVhJLX7Qjho/s64/Ascension_Vitality_Surge.webp",
+          img: "",
           desc: "疊加型增傷",
         },
         枝繁葉茂: {
           branch: 2,
-          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiB70Pu-E7giJcJy-97RMpjPeNqsH4DnUxLr1orCcnpEwkdHWIMYySPOd_PYNWHeu0gEiOFSD9D4WGJxBB_Iw-bmpU0P5w8jkzcqY3nIZOoqY21k_PwyXt0eaZbVgeVDWDQmnmE6p7dtdxHpQNpTnas6kEs1rnZ7x3L6PjjAL5-NcYbz4sm1gfKaDHwWgk/s64/Ascension_Lush_Foliage.webp",
+          img: "",
           desc: "強化木靈生存與範圍",
         },
         靈植庇護: {
           branch: 2,
-          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgRody-MgAP9xONxYsgZo0ARl1LSCOKltZb2Ifj-joEf8d0q3p344aSHFgDLY5EH2u4DCRrvdWiL6SVAuVbqALmTdrVEhAvHue2JT73aPtFfhR0bi0SdIKQYBtpOizGlWfwg_s18C1rED4Z20hrcUNeZE2raJIdY_4wd-fwyGOFT3-8GE-8vyP2LNaPtoY/s64/Ascension_Guardian_Spirit.webp",
+          img: "",
           desc: "護盾回復與免死機制",
         },
         森林領域: {
           branch: 2,
-          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUr-_cQ_gCBuSHRBZ1yr93SXg9vXxfnCJn1IWIJML8dY83UkrVruXFV4qI51AxGwoO8he-8iU7Az9AwD1UcRNkvUN0JIE-oDWd48S0TwTlxi9-TAZhcjmWS2yjHFnNvRGs5NLfNPx679C9dQZX-IsZ1Wgw-MUgnL7EAPVamiLULoG3aevArvrItI2ucI4/s64/Ascension_Forest_Domain.webp",
+          img: "",
           desc: "提升領域內異常機率",
         },
         //覺醒分支三
@@ -1672,19 +1672,19 @@ window.STARDUST_ASSETS.gunfire = {
       },
       blessings: {
         韻影交融: {
-          img: "https://placehold.co/150x150/111/ff8c00?text=韻影交融",
+          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiHxQI4fXDYZcdR53UZ9BiSsy9S9n_vNBwi0rcdOI5kf93Z_n3tsnDYnJToQ_6PYoFfvx-AqlkTjdXppcoE1tYon7lR-dVnHSM4LP1I9GHjMVQGWLwZTAkjNyGtc0KsYjUovaEA1ZEv2l4RHdRj_Byzv9lckqIzV0uu6GDV4-KVuoNNpq3VeQg33nte_FU/s127/Inkwash_Fusion%20.webp",
           desc: "SYS_LOG: “墨韻”上限+30。每有1點“墨韻”，武器傷害增加5%，幸運一擊機率+1%。自身處於【清域】時，每秒額外獲得2點“墨韻”和2點武器技能的資源。對敵人造成傷害後，立即獲得20點“墨韻”（僅在戰鬥狀態下觸發1次，脫離戰鬥後恢復可觸發次數）。",
         },
         染墨新生: {
-          img: "https://placehold.co/150x150/111/ff8c00?text=染墨新生",
+          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg8IrnBsENwu2CrCSvSjixYXqKXKhj77da9nFegsIvxaWt4N6ItGZRLTiblQcyuDd2EzWmxHkpKcazN_X8bCWlH74qfBi5CeMzq70nWHd6vDMwVxTwgD32JbMOBW21DxRocDuTUjFaGlRjDVXtRaD2CGu0TbQgEhH40CzctCmKZ5VEwhgPSS-GoKA9YCMs/s127/Rebirth_from_Brush%20.webp",
           desc: "SYS_LOG: 濁墨最終傷害提高200%。釋放【墨鋒四散】需要消耗更多的“墨韻”，最多消耗30點，每額外消耗1點會使最終傷害提高40%。每秒自動獲得1層狀態，拾取墨珠可獲得1層，最多24層。釋放靈墨化形可消耗24層，獲得15點“墨韻”，並額外生成1波墨珠。",
         },
         韻溢墨湧: {
-          img: "https://placehold.co/150x150/111/ff8c00?text=韻溢墨湧",
+          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJBamekjSLXf9MBR6TiqFS7R2MRBFb4QOIcYGtLBnKNGf6FqzIIZeI04HPim6rLiZ-ysgx6wMGaKJciEhH9vu0Id0kvIyE90h9HuJOEa5h__PA9mDgQcFzYPCCLCDUavOc2s1XsfHSQ4-P1bwGxQlrBs6O1t0Ov_N5Gr7pt_QuW09yb9zq2nX-4QCoO_g/s127/Overflowing_Ink.webp",
           desc: "SYS_LOG: 每擁有1點護盾上限，揮墨成卷的基礎傷害增加2%。當“墨韻”超過20點時消耗20點“墨韻”自動向最近的敵人釋放一次揮墨成卷，該次技能造成的最終傷害提高300%，並使接下來12秒內“墨韻”的獲取量增加100%。",
         },
         馳墨滌魂: {
-          img: "https://placehold.co/150x150/111/ff8c00?text=馳墨滌魂",
+          img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiiKrWuzJK6Qd1CiRnmPMrE93F1XkAGT4_4f7nSrBRMsQmMmlLKkoInnyQbWBnlUmF4YfgchL2C5E7NPEB5G1id6uJ88s4kea5-9KYkjcjBuCRl9Ks9ZOVr_ke7tQv2xTEOC1EFjB7yy03micnE5o4F14akubxW2XiLUOVPEXioAzt0rcwqKxzf3cNewk4/s127/Soul_Sublimation.webp",
           desc: "SYS_LOG: 【濁域】造成傷害時，最終傷害提高900%並獲得2點“墨韻”，每個敵人3秒內最多觸發1次。自身每擁有30%的移速加成，該靈佑效果提升25%。",
         },
       },

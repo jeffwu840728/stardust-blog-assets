@@ -411,6 +411,10 @@ div.post-body .stardust-Gun-Reb-tab-btn.active[data-target="stardust-Gun-Reb-tre
   border-color: var(--color-brand-gold);
   box-shadow: 0 0 15px color-mix(in srgb, var(--color-brand-gold) 30%, transparent);
 }
+div.post-body .stardust-Gun-Reb-tab-btn.active[data-target="stardust-Gun-Reb-tree-brown"] {
+  border-color: var(--color-brand-brown);
+  box-shadow: 0 0 15px color-mix(in srgb, var(--color-brand-brown) 30%, transparent);
+}
 
 div.post-body .stardust-Gun-Reb-tab-content {
   display: none;
@@ -2143,6 +2147,10 @@ div.post-body .stardust-Gun-Reb-theme-green {
 div.post-body .stardust-Gun-Reb-theme-gold {
   --group-color: var(--color-brand-gold);
   --stardust-Gun-Reb-card-theme: var(--color-brand-gold);
+}
+div.post-body .stardust-Gun-Reb-theme-brown {
+  --group-color: var(--color-brand-brown);
+  --stardust-Gun-Reb-card-theme: var(--color-brand-brown);
 }
 
 /* ============================================================

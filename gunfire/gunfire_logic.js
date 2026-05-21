@@ -108,6 +108,8 @@ const gunfireApp = (function () {
       const name = heroData.getAttribute("data-hero-name") || "SYS_ERROR";
       const dbHero = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.gunfire?.Heroes?.[name]) || null;
 
+      const imgPos = heroData.getAttribute("data-hero-img-pos") || "center top";
+
       // 取得立繪 (優先讀取資料庫)
       let rawImg = heroData.getAttribute("data-hero-img");
       if (dbHero?.Role?.[name]?.img) rawImg = dbHero.Role[name].img;
@@ -165,7 +167,7 @@ const gunfireApp = (function () {
           <div class="stardust-Gun-Reb-hp-card">
             <div class="stardust-Gun-Reb-hp-top-section">
               <div class="stardust-Gun-Reb-hp-image-container">
-                <img src="${img}" alt="${name}" loading="lazy" class="stardust-Gun-Reb-lightbox-trigger" />
+                <img src="${img}" alt="${name}" style="object-position: ${imgPos};" loading="lazy" class="stardust-Gun-Reb-lightbox-trigger" />
               </div>
               <div class="stardust-Gun-Reb-hp-info-panel">
                 <div class="stardust-Gun-Reb-hp-intro-wrapper">
