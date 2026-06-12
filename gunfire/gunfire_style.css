@@ -6,24 +6,24 @@
    自動隱藏所有符合命名規範的 Data-Driven 原始結構
    規則：類名以 stardust- 開頭，且以 -item 結尾
    ============================================================ */
-div.post-body [class^="stardust-"][class$="-item"] {
+[class^="stardust-"][class$="-item"] {
   display: none !important;
 }
 /* =========================================
    ★ [模板] 槍火重生：隱形縮圖組件 ★
    ========================================= */
-div.post-body .stardust-Gun-Reb-hidden-thumb {
+.stardust-Gun-Reb-hidden-thumb {
   display: none;
 }
 /* 專屬靈佑流派解析 */
-div.post-body .stardust-Gun-Reb-list-wrapper {
+.stardust-Gun-Reb-list-wrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;
   padding: 0 20px 40px;
 }
 
-div.post-body .stardust-Gun-Reb-card {
+.stardust-Gun-Reb-card {
   display: flex;
   align-items: center;
   gap: 30px;
@@ -38,7 +38,7 @@ div.post-body .stardust-Gun-Reb-card {
 }
 
 /* 動態能量條 */
-div.post-body .stardust-Gun-Reb-card::before {
+.stardust-Gun-Reb-card::before {
   content: "";
   position: absolute;
   left: -1px;
@@ -51,19 +51,19 @@ div.post-body .stardust-Gun-Reb-card::before {
   opacity: 0.5;
 }
 
-div.post-body .stardust-Gun-Reb-card:hover {
+.stardust-Gun-Reb-card:hover {
   border-color: color-mix(in srgb, var(--stardust-Gun-Reb-card-theme, var(--sys-accent-color)) 50%, transparent);
   box-shadow: 0 10px 25px color-mix(in srgb, var(--stardust-Gun-Reb-card-theme, var(--sys-accent-color)) 20%, transparent);
 }
 
-div.post-body .stardust-Gun-Reb-card:hover::before {
+.stardust-Gun-Reb-card:hover::before {
   top: 0;
   bottom: 0;
   opacity: 1;
   box-shadow: 0 0 15px var(--stardust-Gun-Reb-card-theme, var(--sys-accent-color));
 }
 
-div.post-body .stardust-Gun-Reb-img-wrapper {
+.stardust-Gun-Reb-img-wrapper {
   position: relative;
   width: 140px;
   height: 140px;
@@ -74,7 +74,7 @@ div.post-body .stardust-Gun-Reb-img-wrapper {
   justify-content: center;
 }
 
-div.post-body .stardust-Gun-Reb-img-wrapper img {
+.stardust-Gun-Reb-img-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -83,18 +83,18 @@ div.post-body .stardust-Gun-Reb-img-wrapper img {
   transition: transform 0.3s ease;
 }
 
-div.post-body .stardust-Gun-Reb-card:hover .stardust-Gun-Reb-img-wrapper img {
+.stardust-Gun-Reb-card:hover .stardust-Gun-Reb-img-wrapper img {
   transform: scale(1.05);
 }
 
-div.post-body .stardust-Gun-Reb-content {
+.stardust-Gun-Reb-content {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-div.post-body .stardust-Gun-Reb-header {
+.stardust-Gun-Reb-header {
   margin-bottom: 12px;
   display: flex;
   flex-direction: row;
@@ -104,7 +104,7 @@ div.post-body .stardust-Gun-Reb-header {
   gap: 15px;
 }
 
-div.post-body .stardust-Gun-Reb-title {
+.stardust-Gun-Reb-title {
   font-family: "Oswald", "Noto Sans TC", sans-serif;
   font-size: 20px;
   font-weight: 700;
@@ -113,14 +113,14 @@ div.post-body .stardust-Gun-Reb-title {
   letter-spacing: 1px;
 }
 
-div.post-body .stardust-Gun-Reb-desc {
+.stardust-Gun-Reb-desc {
   font-size: 18px;
   line-height: 1.8;
   color: var(--color-text-secondary);
   margin: 0;
 }
 
-div.post-body .stardust-Gun-Reb-desc b {
+.stardust-Gun-Reb-desc b {
   color: var(--color-text-heading);
   font-weight: bold;
   position: relative;
@@ -128,7 +128,7 @@ div.post-body .stardust-Gun-Reb-desc b {
   padding-bottom: 2px;
 }
 
-div.post-body .stardust-Gun-Reb-desc b::after {
+.stardust-Gun-Reb-desc b::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -140,7 +140,7 @@ div.post-body .stardust-Gun-Reb-desc b::after {
 }
 
 /* --- 全息微型語法糖特效 (data-tip) --- */
-div.post-body .stardust-Gun-Reb-tooltip-target {
+.stardust-Gun-Reb-tooltip-target {
   position: relative;
   cursor: help;
   border-bottom: 1px dashed var(--stardust-Gun-Reb-card-theme, var(--sys-accent-color));
@@ -191,17 +191,17 @@ div.post-body .stardust-Gun-Reb-tooltip-target {
 }
 
 @media (max-width: 768px) {
-  div.post-body .stardust-Gun-Reb-card {
+  .stardust-Gun-Reb-card {
     flex-direction: column;
     text-align: center;
     padding: 25px 20px;
   }
-  div.post-body .stardust-Gun-Reb-header {
+  .stardust-Gun-Reb-header {
     justify-content: center;
   }
 }
 /* 覺醒能力圖鑑 - 賽博維基卡片模組 */
-div.post-body .stardust-Gun-Reb-wiki-grid {
+.stardust-Gun-Reb-wiki-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
@@ -209,12 +209,12 @@ div.post-body .stardust-Gun-Reb-wiki-grid {
 }
 
 @media (max-width: 768px) {
-  div.post-body .stardust-Gun-Reb-wiki-grid {
+  .stardust-Gun-Reb-wiki-grid {
     grid-template-columns: 1fr;
   }
 }
 
-div.post-body .stardust-Gun-Reb-wiki-card {
+.stardust-Gun-Reb-wiki-card {
   background: var(--color-surface-primary);
   border: 1px solid var(--color-border-primary);
   border-radius: 8px;
@@ -228,7 +228,7 @@ div.post-body .stardust-Gun-Reb-wiki-card {
   z-index: 1;
 }
 
-div.post-body .stardust-Gun-Reb-wiki-card::before {
+.stardust-Gun-Reb-wiki-card::before {
   content: "";
   position: absolute;
   left: 0;
@@ -240,18 +240,18 @@ div.post-body .stardust-Gun-Reb-wiki-card::before {
   transition: all 0.3s ease;
 }
 
-div.post-body .stardust-Gun-Reb-wiki-card:hover {
+.stardust-Gun-Reb-wiki-card:hover {
   background: color-mix(in srgb, var(--color-surface-secondary) 50%, var(--color-surface-primary));
   border-color: var(--stardust-Gun-Reb-card-theme);
   box-shadow: 0 10px 25px color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 15%, transparent);
 }
 
-div.post-body .stardust-Gun-Reb-wiki-card:hover::before {
+.stardust-Gun-Reb-wiki-card:hover::before {
   background: var(--stardust-Gun-Reb-card-theme);
   box-shadow: 0 0 10px color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 40%, transparent);
 }
 
-div.post-body .stardust-Gun-Reb-wiki-header {
+.stardust-Gun-Reb-wiki-header {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -260,7 +260,7 @@ div.post-body .stardust-Gun-Reb-wiki-header {
   margin-bottom: 15px;
 }
 
-div.post-body .stardust-Gun-Reb-reactor {
+.stardust-Gun-Reb-reactor {
   width: 60px;
   height: 60px;
   background: var(--color-surface-darker);
@@ -273,12 +273,12 @@ div.post-body .stardust-Gun-Reb-reactor {
   justify-content: center;
 }
 
-div.post-body .stardust-Gun-Reb-wiki-card:hover .stardust-Gun-Reb-reactor {
+.stardust-Gun-Reb-wiki-card:hover .stardust-Gun-Reb-reactor {
   border-color: var(--stardust-Gun-Reb-card-theme);
   box-shadow: 0 0 10px color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 30%, transparent);
 }
 
-div.post-body .stardust-Gun-Reb-reactor img {
+.stardust-Gun-Reb-reactor img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -286,7 +286,7 @@ div.post-body .stardust-Gun-Reb-reactor img {
   cursor: zoom-in;
 }
 
-div.post-body .stardust-Gun-Reb-wiki-title-group {
+.stardust-Gun-Reb-wiki-title-group {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -294,7 +294,7 @@ div.post-body .stardust-Gun-Reb-wiki-title-group {
   gap: 10px;
 }
 
-div.post-body .stardust-Gun-Reb-wiki-title {
+.stardust-Gun-Reb-wiki-title {
   font-size: 20px;
   font-weight: 700;
   color: var(--color-text-heading);
@@ -303,7 +303,7 @@ div.post-body .stardust-Gun-Reb-wiki-title {
 }
 
 /* --- 標籤樣式 (動態色彩) --- */
-div.post-body .stardust-Gun-Reb-w-tag {
+.stardust-Gun-Reb-w-tag {
   font-family: "Share Tech Mono", "Noto Sans TC", sans-serif;
   font-size: 14px;
   font-weight: bold;
@@ -320,30 +320,30 @@ div.post-body .stardust-Gun-Reb-w-tag {
 }
 
 @media (max-width: 480px) {
-  div.post-body .stardust-Gun-Reb-wiki-title-group {
+  .stardust-Gun-Reb-wiki-title-group {
     flex-direction: column;
     align-items: flex-start;
   }
 }
 
-div.post-body .stardust-Gun-Reb-wiki-body {
+.stardust-Gun-Reb-wiki-body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
-div.post-body .stardust-Gun-Reb-wiki-mech {
+.stardust-Gun-Reb-wiki-mech {
   font-size: 16px;
   color: var(--color-text-primary);
   margin: 0 0 12px 0;
   line-height: 1.6;
 }
 
-div.post-body .stardust-Gun-Reb-wiki-mech b {
+.stardust-Gun-Reb-wiki-mech b {
   color: var(--stardust-Gun-Reb-card-theme);
 }
 
-div.post-body .stardust-Gun-Reb-wiki-eval {
+.stardust-Gun-Reb-wiki-eval {
   padding: 10px 15px;
   background: color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 8%, transparent);
   border-left: 3px solid var(--stardust-Gun-Reb-card-theme);
@@ -354,21 +354,21 @@ div.post-body .stardust-Gun-Reb-wiki-eval {
   margin-top: auto;
 }
 
-div.post-body .stardust-Gun-Reb-wiki-eval b {
+.stardust-Gun-Reb-wiki-eval b {
   color: var(--color-text-heading);
 }
-div.post-body .stardust-Gun-Reb-tabs-wrapper {
+.stardust-Gun-Reb-tabs-wrapper {
   display: flex;
   padding: 0 25px 20px 25px;
   overflow-x: auto;
   scrollbar-width: none;
 }
 
-div.post-body .stardust-Gun-Reb-tabs-wrapper::-webkit-scrollbar {
+.stardust-Gun-Reb-tabs-wrapper::-webkit-scrollbar {
   display: none;
 }
 
-div.post-body .stardust-Gun-Reb-tab-btn {
+.stardust-Gun-Reb-tab-btn {
   background: var(--color-surface-secondary);
   border: 1px solid var(--color-border-primary);
   color: var(--color-text-secondary);
@@ -386,42 +386,46 @@ div.post-body .stardust-Gun-Reb-tab-btn {
   flex-shrink: 0; /* 確保手機版不會被擠壓變形 */
 }
 
-div.post-body .stardust-Gun-Reb-tab-btn:hover {
+.stardust-Gun-Reb-tab-btn:hover {
   background: var(--color-surface-tertiary);
   color: var(--color-text-heading);
   border-color: var(--color-border-secondary);
 }
 
-div.post-body .stardust-Gun-Reb-tab-btn.active {
+.stardust-Gun-Reb-tab-btn.active {
   pointer-events: none;
   background: var(--color-surface-primary);
   color: var(--color-text-heading);
 }
 
 /* 對應不同路線的發光特效 */
-div.post-body .stardust-Gun-Reb-tab-btn.active[data-target="stardust-Gun-Reb-tree-green"] {
+.stardust-Gun-Reb-tab-btn.active[data-target="stardust-Gun-Reb-tree-green"] {
   border-color: var(--color-brand-green-tier);
   box-shadow: 0 0 15px color-mix(in srgb, var(--color-brand-green-tier) 30%, transparent);
 }
-div.post-body .stardust-Gun-Reb-tab-btn.active[data-target="stardust-Gun-Reb-tree-cyan"] {
+.stardust-Gun-Reb-tab-btn.active[data-target="stardust-Gun-Reb-tree-cyan"] {
   border-color: var(--color-brand-cyan);
   box-shadow: 0 0 15px color-mix(in srgb, var(--color-brand-cyan) 30%, transparent);
 }
-div.post-body .stardust-Gun-Reb-tab-btn.active[data-target="stardust-Gun-Reb-tree-gold"] {
+.stardust-Gun-Reb-tab-btn.active[data-target="stardust-Gun-Reb-tree-blue"] {
+  border-color: var(--color-brand-blue);
+  box-shadow: 0 0 15px color-mix(in srgb, var(--color-brand-blue) 30%, transparent);
+}
+.stardust-Gun-Reb-tab-btn.active[data-target="stardust-Gun-Reb-tree-gold"] {
   border-color: var(--color-brand-gold);
   box-shadow: 0 0 15px color-mix(in srgb, var(--color-brand-gold) 30%, transparent);
 }
-div.post-body .stardust-Gun-Reb-tab-btn.active[data-target="stardust-Gun-Reb-tree-brown"] {
+.stardust-Gun-Reb-tab-btn.active[data-target="stardust-Gun-Reb-tree-brown"] {
   border-color: var(--color-brand-brown);
   box-shadow: 0 0 15px color-mix(in srgb, var(--color-brand-brown) 30%, transparent);
 }
 
-div.post-body .stardust-Gun-Reb-tab-content {
+.stardust-Gun-Reb-tab-content {
   display: none;
   animation: stardustFade 0.4s ease forwards;
 }
 
-div.post-body .stardust-Gun-Reb-tab-content.active {
+.stardust-Gun-Reb-tab-content.active {
   display: block;
 }
 
@@ -436,7 +440,7 @@ div.post-body .stardust-Gun-Reb-tab-content.active {
   }
 }
 /* 靈氣連接卡片 (Link Cards) - 加寬且固定裝備槽高度版*/
-div.post-body .stardust-Gun-Reb-link-carousel {
+.stardust-Gun-Reb-link-carousel {
   display: flex;
   overflow-x: auto;
   gap: 20px;
@@ -446,15 +450,15 @@ div.post-body .stardust-Gun-Reb-link-carousel {
   -webkit-overflow-scrolling: touch;
 }
 
-div.post-body .stardust-Gun-Reb-link-carousel::-webkit-scrollbar {
+.stardust-Gun-Reb-link-carousel::-webkit-scrollbar {
   display: none;
 }
 
-div.post-body .stardust-Gun-Reb-link-carousel:active {
+.stardust-Gun-Reb-link-carousel:active {
   cursor: grabbing;
 }
 
-div.post-body .stardust-Gun-Reb-link-card {
+.stardust-Gun-Reb-link-card {
   flex: 0 0 420px; /* ★ 修改：從 350px 變胖為 420px，容納更多文字 */
   height: 480px; /* ★ 修改：設定固定高度以適應新排版 */
   background: var(--color-surface-primary);
@@ -470,20 +474,20 @@ div.post-body .stardust-Gun-Reb-link-card {
   overflow: hidden;
 }
 
-body.dark-theme div.post-body .stardust-Gun-Reb-link-card {
+body.dark-theme .stardust-Gun-Reb-link-card {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-div.post-body .stardust-Gun-Reb-link-card:hover {
+.stardust-Gun-Reb-link-card:hover {
   border-color: color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 50%, transparent);
   box-shadow: 0 10px 25px color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 20%, transparent);
 }
 
-body.dark-theme div.post-body .stardust-Gun-Reb-link-card:hover {
+body.dark-theme .stardust-Gun-Reb-link-card:hover {
   box-shadow: 0 10px 25px color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 30%, transparent);
 }
 
-div.post-body .stardust-Gun-Reb-clk-top {
+.stardust-Gun-Reb-clk-top {
   background: linear-gradient(90deg, color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 15%, transparent), transparent);
   border-bottom: 1px solid color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 30%, transparent);
   padding: 12px 20px;
@@ -494,7 +498,7 @@ div.post-body .stardust-Gun-Reb-clk-top {
   box-sizing: border-box;
 }
 
-div.post-body .stardust-Gun-Reb-clk-top .stardust-Gun-Reb-b-tag {
+.stardust-Gun-Reb-clk-top .stardust-Gun-Reb-b-tag {
   background: var(--stardust-Gun-Reb-card-theme);
   color: var(--color-surface-primary);
   font-family: "Share Tech Mono", monospace;
@@ -504,13 +508,13 @@ div.post-body .stardust-Gun-Reb-clk-top .stardust-Gun-Reb-b-tag {
   border-radius: 4px;
   box-shadow: 0 0 10px color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 50%, transparent);
 }
-div.post-body .stardust-Gun-Reb-clk-top-info {
+.stardust-Gun-Reb-clk-top-info {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-div.post-body .stardust-Gun-Reb-clk-top-img {
+.stardust-Gun-Reb-clk-top-img {
   width: 46px; /* ★ 從 28px 放大到 46px */
   height: 46px;
   border-radius: 6px;
@@ -519,7 +523,7 @@ div.post-body .stardust-Gun-Reb-clk-top-img {
   box-shadow: 0 0 10px color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 40%, transparent);
 }
 
-div.post-body .stardust-Gun-Reb-clk-top .stardust-Gun-Reb-b-name {
+.stardust-Gun-Reb-clk-top .stardust-Gun-Reb-b-name {
   font-family: "Noto Sans TC", sans-serif;
   font-size: 18px;
   font-weight: 700;
@@ -527,25 +531,25 @@ div.post-body .stardust-Gun-Reb-clk-top .stardust-Gun-Reb-b-name {
 }
 
 /* 狀態：無綁定 (Unbound) */
-div.post-body .stardust-Gun-Reb-clk-top.is-unbound {
+.stardust-Gun-Reb-clk-top.is-unbound {
   background: transparent;
   border-bottom: 1px dashed color-mix(in srgb, var(--color-border-primary) 80%, transparent);
 }
 
-div.post-body .stardust-Gun-Reb-clk-top.is-unbound .stardust-Gun-Reb-b-tag {
+.stardust-Gun-Reb-clk-top.is-unbound .stardust-Gun-Reb-b-tag {
   background: var(--color-surface-secondary);
   color: var(--color-text-secondary);
   box-shadow: none;
   border: 1px solid var(--color-border-primary);
 }
 
-div.post-body .stardust-Gun-Reb-clk-top.is-unbound .stardust-Gun-Reb-b-name {
+.stardust-Gun-Reb-clk-top.is-unbound .stardust-Gun-Reb-b-name {
   color: var(--color-text-secondary);
   font-weight: 400;
   letter-spacing: 1px;
 }
 
-div.post-body .stardust-Gun-Reb-clk-body {
+.stardust-Gun-Reb-clk-body {
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -553,13 +557,13 @@ div.post-body .stardust-Gun-Reb-clk-body {
   gap: 15px;
 }
 
-div.post-body .stardust-Gun-Reb-clk-header {
+.stardust-Gun-Reb-clk-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-div.post-body .stardust-Gun-Reb-clk-title {
+.stardust-Gun-Reb-clk-title {
   font-family: "Oswald", "Noto Sans TC", sans-serif;
   font-size: 18px;
   font-weight: 700;
@@ -569,7 +573,7 @@ div.post-body .stardust-Gun-Reb-clk-title {
   text-shadow: 0 0 15px color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 40%, transparent);
 }
 
-div.post-body .stardust-Gun-Reb-clk-effect {
+.stardust-Gun-Reb-clk-effect {
   background: var(--color-surface-secondary);
   border-radius: 6px;
   padding: 12px 15px;
@@ -579,18 +583,18 @@ div.post-body .stardust-Gun-Reb-clk-effect {
   flex-grow: 1; /* ★ 魔法屬性：自動撐開剩餘空間，將裝備區的虛線完美對齊在同一水平線上 */
 }
 
-div.post-body .stardust-Gun-Reb-clk-effect p {
+.stardust-Gun-Reb-clk-effect p {
   margin: 0;
   font-size: 16px;
   line-height: 1.7;
   color: var(--color-text-secondary);
 }
 
-div.post-body .stardust-Gun-Reb-clk-effect p b {
+.stardust-Gun-Reb-clk-effect p b {
   color: var(--stardust-Gun-Reb-card-theme);
 }
 
-div.post-body .stardust-Gun-Reb-clk-zone {
+.stardust-Gun-Reb-clk-zone {
   margin-top: 15px;
   padding-top: 15px;
   border-top: 1px dashed var(--color-border-primary);
@@ -602,7 +606,7 @@ div.post-body .stardust-Gun-Reb-clk-zone {
   flex-shrink: 0;
 }
 
-div.post-body .stardust-Gun-Reb-s-title {
+.stardust-Gun-Reb-s-title {
   font-family: "Share Tech Mono", "Oswald", sans-serif;
   font-size: 11px;
   font-weight: bold;
@@ -613,7 +617,7 @@ div.post-body .stardust-Gun-Reb-s-title {
   gap: 6px;
 }
 
-div.post-body .stardust-Gun-Reb-s-title::before {
+.stardust-Gun-Reb-s-title::before {
   content: "";
   display: inline-block;
   width: 4px;
@@ -622,13 +626,13 @@ div.post-body .stardust-Gun-Reb-s-title::before {
   border-radius: 1px;
 }
 
-div.post-body .stardust-Gun-Reb-s-chips {
+.stardust-Gun-Reb-s-chips {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
 }
 
-div.post-body .stardust-Gun-Reb-req-chip {
+.stardust-Gun-Reb-req-chip {
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
@@ -648,7 +652,7 @@ div.post-body .stardust-Gun-Reb-req-chip {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-div.post-body .stardust-Gun-Reb-req-chip-img {
+.stardust-Gun-Reb-req-chip-img {
   width: 32px; /* ★ 從 20px 放大到 32px */
   height: 32px;
   border-radius: 4px;
@@ -660,12 +664,12 @@ div.post-body .stardust-Gun-Reb-req-chip-img {
   border: 1px solid var(--chip-tier-color, color-mix(in srgb, var(--color-border-primary) 60%, transparent));
   box-shadow: 0 0 5px var(--chip-tier-color, transparent);
 }
-div.post-body .stardust-Gun-Reb-req-chip.is-req .stardust-Gun-Reb-req-chip-img {
+.stardust-Gun-Reb-req-chip.is-req .stardust-Gun-Reb-req-chip-img {
   border-color: var(--chip-tier-color, color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 60%, transparent));
   box-shadow: 0 0 8px var(--chip-tier-color, color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 40%, transparent));
 }
 /* 必選槽 (Required) */
-div.post-body .stardust-Gun-Reb-req-chip.is-req {
+.stardust-Gun-Reb-req-chip.is-req {
   border: 1px solid color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 30%, transparent);
   border-left: 3px solid var(--stardust-Gun-Reb-card-theme);
   background: color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 6%, transparent);
@@ -674,30 +678,30 @@ div.post-body .stardust-Gun-Reb-req-chip.is-req {
 
 
 /* 備選槽 (Optional) */
-div.post-body .stardust-Gun-Reb-req-chip.is-opt {
+.stardust-Gun-Reb-req-chip.is-opt {
   border: 1px dashed color-mix(in srgb, var(--color-text-secondary) 30%, transparent);
   border-left: 3px dashed var(--color-text-secondary);
   background: transparent;
   color: var(--color-text-secondary);
   opacity: 0.85;
 }
-div.post-body .stardust-Gun-Reb-req-chip.is-opt .stardust-Gun-Reb-req-chip-img {
+.stardust-Gun-Reb-req-chip.is-opt .stardust-Gun-Reb-req-chip-img {
   /* 可選裝備圖示：若無品質顏色則預設暗化 */
   border-color: var(--chip-tier-color, color-mix(in srgb, var(--color-text-secondary) 40%, transparent));
   box-shadow: 0 0 5px var(--chip-tier-color, transparent);
   opacity: 0.9;
 }
-div.post-body .stardust-Gun-Reb-req-chip.is-opt:hover .stardust-Gun-Reb-req-chip-img {
+.stardust-Gun-Reb-req-chip.is-opt:hover .stardust-Gun-Reb-req-chip-img {
   opacity: 1;
 }
 
-div.post-body .stardust-Gun-Reb-req-chip.is-opt:hover {
+.stardust-Gun-Reb-req-chip.is-opt:hover {
   opacity: 1;
   background: rgba(255, 255, 255, 0.02);
 }
 
 /* 科技風 OPT 浮水印標籤 */
-div.post-body .stardust-Gun-Reb-req-chip.is-opt::after {
+.stardust-Gun-Reb-req-chip.is-opt::after {
   content: "OPT";
   position: absolute;
   top: 0;
@@ -715,12 +719,12 @@ div.post-body .stardust-Gun-Reb-req-chip.is-opt::after {
 
 /* 響應式：手機版安全防護 */
 @media (max-width: 768px) {
-  div.post-body .stardust-Gun-Reb-link-card {
+  .stardust-Gun-Reb-link-card {
     flex: 0 0 85vw; /* 手機版自適應寬度 */
     height: auto;
     min-height: 480px;
   }
-  div.post-body .stardust-Gun-Reb-clk-zone {
+  .stardust-Gun-Reb-clk-zone {
     height: auto; /* 手機版不寫死高度，避免因為螢幕過窄擠壓換行而重疊 */
     min-height: 150px;
   }
@@ -730,14 +734,14 @@ div.post-body .stardust-Gun-Reb-req-chip.is-opt::after {
    ============================================================ */
 
 /* --- 1. 全局進度條 --- */
-div.post-body .stardust-Gun-Reb-ach-progress-container {
+.stardust-Gun-Reb-ach-progress-container {
   background: color-mix(in srgb, var(--color-surface-secondary) 50%, transparent);
   border: 1px solid var(--color-border-primary);
   border-radius: 8px;
   padding: 15px 20px;
   margin: 0 20px 20px 20px;
 }
-div.post-body .stardust-Gun-Reb-ach-progress-header {
+.stardust-Gun-Reb-ach-progress-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -748,18 +752,18 @@ div.post-body .stardust-Gun-Reb-ach-progress-header {
   margin-bottom: 12px;
   letter-spacing: 1px;
 }
-div.post-body .stardust-Gun-Reb-ach-progress-header i {
+.stardust-Gun-Reb-ach-progress-header i {
   color: var(--color-brand-cyan);
   margin-right: 6px;
 }
-div.post-body .stardust-Gun-Reb-ach-progress-actions {
+.stardust-Gun-Reb-ach-progress-actions {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
 /* 重置按鈕 */
-div.post-body .stardust-Gun-Reb-ach-clear-btn {
+.stardust-Gun-Reb-ach-clear-btn {
   background: transparent;
   border: 1px solid var(--color-border-tertiary);
   color: var(--color-text-secondary);
@@ -774,24 +778,24 @@ div.post-body .stardust-Gun-Reb-ach-clear-btn {
   align-items: center;
   gap: 5px;
 }
-div.post-body .stardust-Gun-Reb-ach-clear-btn:hover {
+.stardust-Gun-Reb-ach-clear-btn:hover {
   border-color: var(--color-brand-red);
   color: var(--color-brand-red);
   background: color-mix(in srgb, var(--color-brand-red) 10%, transparent);
 }
-div.post-body .stardust-Gun-Reb-ach-clear-btn.is-confirming {
+.stardust-Gun-Reb-ach-clear-btn.is-confirming {
   background: var(--color-brand-red);
   color: #fff;
   border-color: var(--color-brand-red);
   box-shadow: 0 0 10px color-mix(in srgb, var(--color-brand-red) 40%, transparent);
 }
-div.post-body .stardust-Gun-Reb-ach-clear-btn i {
+.stardust-Gun-Reb-ach-clear-btn i {
   margin: 0;
   color: inherit;
 }
 
 /* 進度條本體 */
-div.post-body .stardust-Gun-Reb-ach-progress-bar {
+.stardust-Gun-Reb-ach-progress-bar {
   width: 100%;
   height: 8px;
   background: var(--color-surface-darker);
@@ -799,7 +803,7 @@ div.post-body .stardust-Gun-Reb-ach-progress-bar {
   overflow: hidden;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
 }
-div.post-body .stardust-Gun-Reb-ach-progress-fill {
+.stardust-Gun-Reb-ach-progress-fill {
   height: 100%;
   background: var(--color-brand-green-tier);
   width: 0%;
@@ -808,7 +812,7 @@ div.post-body .stardust-Gun-Reb-ach-progress-fill {
 }
 
 /* --- 2. 橫向卷軸分類切換標籤 --- */
-div.post-body .stardust-Gun-Reb-ach-filter-tabs {
+.stardust-Gun-Reb-ach-filter-tabs {
   display: flex;
   flex-wrap: nowrap;
   gap: 10px;
@@ -819,14 +823,14 @@ div.post-body .stardust-Gun-Reb-ach-filter-tabs {
   padding-bottom: 5px;
   cursor: grab;
 }
-div.post-body .stardust-Gun-Reb-ach-filter-tabs::-webkit-scrollbar {
+.stardust-Gun-Reb-ach-filter-tabs::-webkit-scrollbar {
   display: none;
 }
-div.post-body .stardust-Gun-Reb-ach-filter-tabs:active {
+.stardust-Gun-Reb-ach-filter-tabs:active {
   cursor: grabbing;
 }
 
-div.post-body .stardust-Gun-Reb-ach-tab {
+.stardust-Gun-Reb-ach-tab {
   flex-shrink: 0;
   white-space: nowrap;
   user-select: none;
@@ -845,30 +849,30 @@ div.post-body .stardust-Gun-Reb-ach-tab {
   align-items: center;
   gap: 6px;
 }
-div.post-body .stardust-Gun-Reb-ach-tab:hover {
+.stardust-Gun-Reb-ach-tab:hover {
   border-color: var(--color-brand-cyan);
   color: var(--color-text-heading);
   background: color-mix(in srgb, var(--color-brand-cyan) 10%, transparent);
 }
-div.post-body .stardust-Gun-Reb-ach-tab.active {
+.stardust-Gun-Reb-ach-tab.active {
   background: var(--color-brand-cyan);
   color: var(--color-surface-primary);
   border-color: var(--color-brand-cyan);
   box-shadow: 0 0 12px color-mix(in srgb, var(--color-brand-cyan) 50%, transparent);
 }
-div.post-body .stardust-Gun-Reb-ach-filter-tabs.is-dragging .stardust-Gun-Reb-ach-tab {
+.stardust-Gun-Reb-ach-filter-tabs.is-dragging .stardust-Gun-Reb-ach-tab {
   pointer-events: none;
 }
 
-div.post-body .stardust-Gun-Reb-ach-tab[data-filter="completed"]:hover,
-div.post-body .stardust-Gun-Reb-ach-tab[data-filter="completed"].active {
+.stardust-Gun-Reb-ach-tab[data-filter="completed"]:hover,
+.stardust-Gun-Reb-ach-tab[data-filter="completed"].active {
   background: var(--color-brand-green-tier);
   border-color: var(--color-brand-green-tier);
   color: #121212;
   box-shadow: 0 0 12px color-mix(in srgb, var(--color-brand-green-tier) 50%, transparent);
 }
-div.post-body .stardust-Gun-Reb-ach-tab[data-filter="uncompleted"]:hover,
-div.post-body .stardust-Gun-Reb-ach-tab[data-filter="uncompleted"].active {
+.stardust-Gun-Reb-ach-tab[data-filter="uncompleted"]:hover,
+.stardust-Gun-Reb-ach-tab[data-filter="uncompleted"].active {
   background: var(--color-text-secondary);
   border-color: var(--color-text-secondary);
   color: #fff;
@@ -876,23 +880,23 @@ div.post-body .stardust-Gun-Reb-ach-tab[data-filter="uncompleted"].active {
 }
 
 /* --- 3. 成就卡片與群組網格 --- */
-div.post-body .stardust-Gun-Reb-ach-wrapper {
+.stardust-Gun-Reb-ach-wrapper {
   display: flex;
   flex-direction: column;
   margin-bottom: 25px;
 }
-div.post-body .stardust-Gun-Reb-ach-wrapper.is-hidden {
+.stardust-Gun-Reb-ach-wrapper.is-hidden {
   display: none !important;
 }
 
-div.post-body .stardust-Gun-Reb-ach-series-grid {
+.stardust-Gun-Reb-ach-series-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 15px;
   margin: 0 20px 12px 20px;
 }
 
-div.post-body .stardust-Gun-Reb-ach-card {
+.stardust-Gun-Reb-ach-card {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -904,7 +908,7 @@ div.post-body .stardust-Gun-Reb-ach-card {
   user-select: none;
   margin: 0;
 }
-div.post-body .stardust-Gun-Reb-ach-card input[type="checkbox"] {
+.stardust-Gun-Reb-ach-card input[type="checkbox"] {
   position: absolute;
   left: -2px;
   top: 2px;
@@ -923,7 +927,7 @@ div.post-body .stardust-Gun-Reb-ach-card input[type="checkbox"] {
   z-index: 2;
   margin: 0;
 }
-div.post-body .stardust-Gun-Reb-ach-bg {
+.stardust-Gun-Reb-ach-bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -935,14 +939,14 @@ div.post-body .stardust-Gun-Reb-ach-bg {
   z-index: 0;
   transition: all 0.3s ease;
 }
-div.post-body .stardust-Gun-Reb-ach-icon-box,
-div.post-body .stardust-Gun-Reb-ach-details,
-div.post-body .stardust-Gun-Reb-ach-status {
+.stardust-Gun-Reb-ach-icon-box,
+.stardust-Gun-Reb-ach-details,
+.stardust-Gun-Reb-ach-status {
   position: relative;
   z-index: 1;
 }
 
-div.post-body .stardust-Gun-Reb-ach-icon-box {
+.stardust-Gun-Reb-ach-icon-box {
   width: 50px;
   height: 50px;
   background: rgba(255, 255, 255, 0.03);
@@ -956,7 +960,7 @@ div.post-body .stardust-Gun-Reb-ach-icon-box {
   overflow: hidden;
   padding: 2px;
 }
-div.post-body .stardust-Gun-Reb-ach-icon-box img {
+.stardust-Gun-Reb-ach-icon-box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -965,10 +969,10 @@ div.post-body .stardust-Gun-Reb-ach-icon-box img {
   opacity: 0.6;
   transition: all 0.3s ease;
 }
-div.post-body .stardust-Gun-Reb-ach-details {
+.stardust-Gun-Reb-ach-details {
   flex-grow: 1;
 }
-div.post-body .stardust-Gun-Reb-ach-title {
+.stardust-Gun-Reb-ach-title {
   font-family: "Oswald", "Noto Sans TC", sans-serif;
   font-size: 18px;
   font-weight: 700;
@@ -977,7 +981,7 @@ div.post-body .stardust-Gun-Reb-ach-title {
   letter-spacing: 1px;
   transition: all 0.3s ease;
 }
-div.post-body .stardust-Gun-Reb-ach-desc {
+.stardust-Gun-Reb-ach-desc {
   font-size: 14px;
   color: var(--color-text-secondary);
   line-height: 1.4;
@@ -985,68 +989,68 @@ div.post-body .stardust-Gun-Reb-ach-desc {
   transition: all 0.3s ease;
 }
 
-div.post-body .stardust-Gun-Reb-ach-status {
+.stardust-Gun-Reb-ach-status {
   font-size: 18px;
   color: var(--color-border-primary);
   flex-shrink: 0;
   transition: all 0.3s ease;
 }
-div.post-body .stardust-Gun-Reb-ach-status .fa-check {
+.stardust-Gun-Reb-ach-status .fa-check {
   display: none;
 }
-div.post-body .stardust-Gun-Reb-ach-status .fa-lock {
+.stardust-Gun-Reb-ach-status .fa-lock {
   display: block;
 }
 
 /* 懸停效果 */
-div.post-body .stardust-Gun-Reb-ach-card:hover .stardust-Gun-Reb-ach-bg {
+.stardust-Gun-Reb-ach-card:hover .stardust-Gun-Reb-ach-bg {
   border-color: var(--sys-accent-color);
   background: color-mix(in srgb, var(--sys-accent-color) 3%, transparent);
 }
-div.post-body .stardust-Gun-Reb-ach-card:hover .stardust-Gun-Reb-ach-title {
+.stardust-Gun-Reb-ach-card:hover .stardust-Gun-Reb-ach-title {
   color: var(--color-text-heading);
 }
-div.post-body .stardust-Gun-Reb-ach-card:hover .stardust-Gun-Reb-ach-icon-box img {
+.stardust-Gun-Reb-ach-card:hover .stardust-Gun-Reb-ach-icon-box img {
   filter: grayscale(80%) brightness(0.9);
   opacity: 0.8;
 }
 
 /* 勾選完成狀態 */
-div.post-body .stardust-Gun-Reb-ach-card input:checked ~ .stardust-Gun-Reb-ach-bg {
+.stardust-Gun-Reb-ach-card input:checked ~ .stardust-Gun-Reb-ach-bg {
   border-color: var(--color-brand-green-tier);
   background: color-mix(in srgb, var(--color-brand-green-tier) 8%, transparent);
   box-shadow: 0 0 20px color-mix(in srgb, var(--color-brand-green-tier) 15%, transparent);
 }
-div.post-body .stardust-Gun-Reb-ach-card input:checked ~ .stardust-Gun-Reb-ach-icon-box {
+.stardust-Gun-Reb-ach-card input:checked ~ .stardust-Gun-Reb-ach-icon-box {
   border-color: var(--color-brand-green-tier);
   background: color-mix(in srgb, var(--color-brand-green-tier) 10%, transparent);
   box-shadow: inset 0 0 10px color-mix(in srgb, var(--color-brand-green-tier) 30%, transparent);
 }
-div.post-body .stardust-Gun-Reb-ach-card input:checked ~ .stardust-Gun-Reb-ach-icon-box img {
+.stardust-Gun-Reb-ach-card input:checked ~ .stardust-Gun-Reb-ach-icon-box img {
   filter: grayscale(0%) brightness(1);
   opacity: 1;
 }
-div.post-body .stardust-Gun-Reb-ach-card input:checked ~ .stardust-Gun-Reb-ach-details .stardust-Gun-Reb-ach-title {
+.stardust-Gun-Reb-ach-card input:checked ~ .stardust-Gun-Reb-ach-details .stardust-Gun-Reb-ach-title {
   color: var(--color-text-heading);
   text-shadow: 0 0 8px color-mix(in srgb, var(--color-brand-green-tier) 40%, transparent);
 }
-div.post-body .stardust-Gun-Reb-ach-card input:checked ~ .stardust-Gun-Reb-ach-details .stardust-Gun-Reb-ach-desc {
+.stardust-Gun-Reb-ach-card input:checked ~ .stardust-Gun-Reb-ach-details .stardust-Gun-Reb-ach-desc {
   opacity: 1;
 }
-div.post-body .stardust-Gun-Reb-ach-card input:checked ~ .stardust-Gun-Reb-ach-status {
+.stardust-Gun-Reb-ach-card input:checked ~ .stardust-Gun-Reb-ach-status {
   color: var(--color-brand-green-tier);
   text-shadow: 0 0 10px var(--color-brand-green-tier);
   transform: scale(1.2);
 }
-div.post-body .stardust-Gun-Reb-ach-card input:checked ~ .stardust-Gun-Reb-ach-status .fa-lock {
+.stardust-Gun-Reb-ach-card input:checked ~ .stardust-Gun-Reb-ach-status .fa-lock {
   display: none;
 }
-div.post-body .stardust-Gun-Reb-ach-card input:checked ~ .stardust-Gun-Reb-ach-status .fa-check {
+.stardust-Gun-Reb-ach-card input:checked ~ .stardust-Gun-Reb-ach-status .fa-check {
   display: block;
 }
 
 /* --- 4. 下方情報攻略面板 (系統主色適應版) --- */
-div.post-body .stardust-Gun-Reb-guide-panel {
+.stardust-Gun-Reb-guide-panel {
   margin-left: 32px;  
   margin-right: 5px;  
   margin-top: 5px;
@@ -1068,7 +1072,7 @@ div.post-body .stardust-Gun-Reb-guide-panel {
 }
 
 /* L型延伸連接線維持灰色，保持低調 */
-div.post-body .stardust-Gun-Reb-guide-panel::before {
+.stardust-Gun-Reb-guide-panel::before {
   content: "";
   position: absolute;
   top: -24px;   
@@ -1082,7 +1086,7 @@ div.post-body .stardust-Gun-Reb-guide-panel::before {
 }
 
 /* 面板標題 */
-div.post-body .stardust-Gun-Reb-guide-header {
+.stardust-Gun-Reb-guide-header {
   font-family: "Share Tech Mono", "Noto Sans TC", sans-serif;
   font-size: 13px;
   font-weight: bold;
@@ -1098,12 +1102,12 @@ div.post-body .stardust-Gun-Reb-guide-header {
 }
 
 /* 當滑鼠經過成就卡片時，下方的面板會跟著系統色輕微發光 */
-div.post-body .stardust-Gun-Reb-ach-card:hover + .stardust-Gun-Reb-guide-panel {
+.stardust-Gun-Reb-ach-card:hover + .stardust-Gun-Reb-guide-panel {
   border-color: color-mix(in srgb, var(--sys-accent-color) 30%, transparent);
   background: color-mix(in srgb, var(--sys-accent-color) 5%, var(--color-surface-secondary));
 }
 
-div.post-body .stardust-Gun-Reb-guide-content {
+.stardust-Gun-Reb-guide-content {
   font-size: 16px;
   color: var(--color-text-secondary);
   line-height: 1.6;
@@ -1111,13 +1115,13 @@ div.post-body .stardust-Gun-Reb-guide-content {
 }
 
 /* 情報面板標籤 */
-div.post-body .stardust-Gun-Reb-guide-tags {
+.stardust-Gun-Reb-guide-tags {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
   margin-top: 12px;
 }
-div.post-body .stardust-Gun-Reb-g-tag {
+.stardust-Gun-Reb-g-tag {
   font-family: "Share Tech Mono", monospace;
   font-size: 11.5px;
   background: color-mix(in srgb, var(--color-brand-cyan) 8%, transparent);
@@ -1130,17 +1134,17 @@ div.post-body .stardust-Gun-Reb-g-tag {
   align-items: center;
   gap: 5px;
 }
-div.post-body .stardust-Gun-Reb-g-tag.is-alert {
+.stardust-Gun-Reb-g-tag.is-alert {
   background: color-mix(in srgb, var(--color-brand-red) 8%, transparent);
   color: var(--color-brand-red);
   border-color: color-mix(in srgb, var(--color-brand-red) 30%, transparent);
 }
-div.post-body .stardust-Gun-Reb-g-tag.is-hero {
+.stardust-Gun-Reb-g-tag.is-hero {
   background: color-mix(in srgb, var(--color-brand-orange) 8%, transparent);
   color: var(--color-brand-orange);
   border-color: color-mix(in srgb, var(--color-brand-orange) 30%, transparent);
 }
-div.post-body .stardust-Gun-Reb-ach-grid-2col {
+.stardust-Gun-Reb-ach-grid-2col {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
@@ -1148,7 +1152,7 @@ div.post-body .stardust-Gun-Reb-ach-grid-2col {
 }
 
 /* 確保內部 Wrapper 撐滿網格空間 */
-div.post-body .stardust-Gun-Reb-ach-grid-2col .stardust-Gun-Reb-ach-wrapper {
+.stardust-Gun-Reb-ach-grid-2col .stardust-Gun-Reb-ach-wrapper {
   display: flex;
   flex-direction: column;
   margin-bottom: 0;
@@ -1156,12 +1160,12 @@ div.post-body .stardust-Gun-Reb-ach-grid-2col .stardust-Gun-Reb-ach-wrapper {
 
 /* 手機版防禦：螢幕小於 768px 時自動轉為單行排列 */
 @media (max-width: 768px) {
-  div.post-body .stardust-Gun-Reb-ach-grid-2col {
+  .stardust-Gun-Reb-ach-grid-2col {
     grid-template-columns: 1fr;
   }
 }
 /* ★ EXO STARDUST 模組：系統終端機時間軸 (攻略更新日誌) ★*/
-div.post-body .stardust-Gun-Reb-patch-log {
+.stardust-Gun-Reb-patch-log {
   margin: 0 20px 40px 20px;
   max-height: 350px;
   overflow-y: auto;
@@ -1169,26 +1173,26 @@ div.post-body .stardust-Gun-Reb-patch-log {
   scrollbar-width: thin;
 }
 
-div.post-body .stardust-Gun-Reb-patch-log::-webkit-scrollbar {
+.stardust-Gun-Reb-patch-log::-webkit-scrollbar {
   width: 6px;
 }
-div.post-body .stardust-Gun-Reb-patch-log::-webkit-scrollbar-track {
+.stardust-Gun-Reb-patch-log::-webkit-scrollbar-track {
   background: var(--color-surface-secondary);
   border-radius: 3px;
 }
-div.post-body .stardust-Gun-Reb-patch-log::-webkit-scrollbar-thumb {
+.stardust-Gun-Reb-patch-log::-webkit-scrollbar-thumb {
   background: var(--color-border-primary);
   border-radius: 3px;
 }
-div.post-body .stardust-Gun-Reb-patch-log::-webkit-scrollbar-thumb:hover {
+.stardust-Gun-Reb-patch-log::-webkit-scrollbar-thumb:hover {
   background: var(--sys-accent-color);
 }
 
-div.post-body .stardust-Gun-Reb-patch-inner {
+.stardust-Gun-Reb-patch-inner {
   position: relative;
   padding-bottom: 10px;
 }
-div.post-body .stardust-Gun-Reb-patch-inner::before {
+.stardust-Gun-Reb-patch-inner::before {
   content: "";
   position: absolute;
   top: 10px;
@@ -1199,16 +1203,16 @@ div.post-body .stardust-Gun-Reb-patch-inner::before {
   border-radius: 2px;
 }
 
-div.post-body .stardust-Gun-Reb-patch-entry {
+.stardust-Gun-Reb-patch-entry {
   position: relative;
   margin-bottom: 20px;
   padding-left: 35px;
 }
-div.post-body .stardust-Gun-Reb-patch-entry:last-child {
+.stardust-Gun-Reb-patch-entry:last-child {
   margin-bottom: 0;
 }
 
-div.post-body .stardust-Gun-Reb-patch-node {
+.stardust-Gun-Reb-patch-node {
   position: absolute;
   left: 0;
   top: 16px;
@@ -1221,7 +1225,7 @@ div.post-body .stardust-Gun-Reb-patch-node {
   transition: all 0.3s ease;
 }
 
-div.post-body .stardust-Gun-Reb-patch-card {
+.stardust-Gun-Reb-patch-card {
   padding: 15px 20px;
   background: var(--color-surface-secondary);
   border: 1px solid var(--color-border-primary);
@@ -1230,26 +1234,26 @@ div.post-body .stardust-Gun-Reb-patch-card {
 }
 
 /* Hover 特效：亮起系統主色霓虹燈 */
-div.post-body .stardust-Gun-Reb-patch-entry:hover .stardust-Gun-Reb-patch-card {
+.stardust-Gun-Reb-patch-entry:hover .stardust-Gun-Reb-patch-card {
   background: color-mix(in srgb, var(--color-surface-secondary) 50%, var(--color-surface-primary));
   border-color: var(--sys-accent-color);
   box-shadow: 0 4px 15px color-mix(in srgb, var(--sys-accent-color) 10%, transparent);
   transform: translateX(3px);
 }
-div.post-body .stardust-Gun-Reb-patch-entry:hover .stardust-Gun-Reb-patch-node {
+.stardust-Gun-Reb-patch-entry:hover .stardust-Gun-Reb-patch-node {
   background: var(--sys-accent-color);
   border-color: var(--sys-accent-color);
   box-shadow: 0 0 10px var(--sys-accent-color);
 }
 
-div.post-body .stardust-Gun-Reb-patch-header {
+.stardust-Gun-Reb-patch-header {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 8px;
 }
 
-div.post-body .stardust-Gun-Reb-patch-version {
+.stardust-Gun-Reb-patch-version {
   font-family: "Share Tech Mono", monospace;
   font-size: 16px;
   font-weight: bold;
@@ -1261,27 +1265,27 @@ div.post-body .stardust-Gun-Reb-patch-version {
   letter-spacing: 0.5px;
 }
 
-div.post-body .stardust-Gun-Reb-patch-date {
+.stardust-Gun-Reb-patch-date {
   font-family: "Share Tech Mono", monospace;
   font-size: 16px;
   color: var(--color-text-secondary);
 }
 
-div.post-body .stardust-Gun-Reb-patch-content {
+.stardust-Gun-Reb-patch-content {
   font-size: 16px;
   color: var(--color-text-primary);
   line-height: 1.6;
 }
 
 /* 技能介紹模組 (Data-Driven Skill Showcase) */
-div.post-body .stardust-Gun-Reb-skill-showcase {
+.stardust-Gun-Reb-skill-showcase {
   display: flex;
   flex-direction: column;
   gap: 25px;
   padding: 0 20px 30px;
 }
 
-div.post-body .stardust-Gun-Reb-skill-card {
+.stardust-Gun-Reb-skill-card {
   display: flex;
   background: var(--color-surface-primary);
   border: 1px solid var(--color-border-primary);
@@ -1292,7 +1296,7 @@ div.post-body .stardust-Gun-Reb-skill-card {
   position: relative;
 }
 
-div.post-body .stardust-Gun-Reb-skill-card::before {
+.stardust-Gun-Reb-skill-card::before {
   content: "";
   position: absolute;
   top: 0;
@@ -1304,7 +1308,7 @@ div.post-body .stardust-Gun-Reb-skill-card::before {
   z-index: 2;
 }
 
-div.post-body .stardust-Gun-Reb-skill-icon-box {
+.stardust-Gun-Reb-skill-icon-box {
   width: 140px;
   background: var(--color-surface-secondary);
   display: flex;
@@ -1318,7 +1322,7 @@ div.post-body .stardust-Gun-Reb-skill-icon-box {
   padding: 20px;
 }
 
-div.post-body .stardust-Gun-Reb-skill-icon-box::after {
+.stardust-Gun-Reb-skill-icon-box::after {
   content: "";
   position: absolute;
   top: 0;
@@ -1331,7 +1335,7 @@ div.post-body .stardust-Gun-Reb-skill-icon-box::after {
   pointer-events: none;
 }
 
-div.post-body .stardust-Gun-Reb-skill-keybind {
+.stardust-Gun-Reb-skill-keybind {
   position: absolute;
   top: 10px;
   left: 10px;
@@ -1346,7 +1350,7 @@ div.post-body .stardust-Gun-Reb-skill-keybind {
   box-shadow: 0 0 10px color-mix(in srgb, var(--skill-theme) 50%, transparent);
 }
 
-div.post-body .stardust-Gun-Reb-skill-image {
+.stardust-Gun-Reb-skill-image {
   width: 80px;
   height: 80px;
   object-fit: cover;
@@ -1359,7 +1363,7 @@ div.post-body .stardust-Gun-Reb-skill-image {
     box-shadow 0.3s ease;
 }
 
-div.post-body .stardust-Gun-Reb-skill-content {
+.stardust-Gun-Reb-skill-content {
   flex: 1;
   padding: 25px;
   display: flex;
@@ -1367,7 +1371,7 @@ div.post-body .stardust-Gun-Reb-skill-content {
   justify-content: center;
 }
 
-div.post-body .stardust-Gun-Reb-skill-header {
+.stardust-Gun-Reb-skill-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -1378,7 +1382,7 @@ div.post-body .stardust-Gun-Reb-skill-header {
   gap: 15px;
 }
 
-div.post-body .stardust-Gun-Reb-skill-name h4 {
+.stardust-Gun-Reb-skill-name h4 {
   margin: 0 0 5px 0;
   font-family: "Oswald", "Noto Sans TC", sans-serif;
   font-size: 24px;
@@ -1387,7 +1391,7 @@ div.post-body .stardust-Gun-Reb-skill-name h4 {
   letter-spacing: 1px;
 }
 
-div.post-body .stardust-Gun-Reb-skill-type {
+.stardust-Gun-Reb-skill-type {
   font-family: "Share Tech Mono", monospace;
   font-size: 12px;
   color: var(--skill-theme);
@@ -1396,13 +1400,13 @@ div.post-body .stardust-Gun-Reb-skill-type {
   display: block;
 }
 
-div.post-body .stardust-Gun-Reb-skill-stats {
+.stardust-Gun-Reb-skill-stats {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
 
-div.post-body .stardust-Gun-Reb-stat-badge {
+.stardust-Gun-Reb-stat-badge {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1416,32 +1420,32 @@ div.post-body .stardust-Gun-Reb-stat-badge {
   font-weight: 600;
 }
 
-div.post-body .stardust-Gun-Reb-stat-badge i {
+.stardust-Gun-Reb-stat-badge i {
   color: var(--skill-theme);
 }
 
-div.post-body .stardust-Gun-Reb-skill-desc {
+.stardust-Gun-Reb-skill-desc {
   font-size: 16px;
   line-height: 1.8;
   color: var(--color-text-secondary);
   margin-bottom: 20px;
 }
 
-div.post-body .stardust-Gun-Reb-skill-footer {
+.stardust-Gun-Reb-skill-footer {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
 /* ★ 機制說明 Box & List 排版 ★ */
-div.post-body .stardust-Gun-Reb-mechanic-box {
+.stardust-Gun-Reb-mechanic-box {
   background: color-mix(in srgb, var(--color-text-heading) 5%, transparent);
   border: 1px dashed var(--color-border-primary);
   padding: 15px 20px;
   border-radius: 4px;
 }
 
-div.post-body .stardust-Gun-Reb-mech-label {
+.stardust-Gun-Reb-mech-label {
   color: var(--color-surface-primary);
   background: var(--skill-theme);
   padding: 2px 8px;
@@ -1454,13 +1458,13 @@ div.post-body .stardust-Gun-Reb-mech-label {
   letter-spacing: 1px;
 }
 
-div.post-body .stardust-Gun-Reb-mechanic-list {
+.stardust-Gun-Reb-mechanic-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-div.post-body .stardust-Gun-Reb-mechanic-list li {
+.stardust-Gun-Reb-mechanic-list li {
   position: relative;
   padding-left: 18px;
   margin-bottom: 8px;
@@ -1470,12 +1474,12 @@ div.post-body .stardust-Gun-Reb-mechanic-list li {
   display: block;
 }
 
-div.post-body .stardust-Gun-Reb-mechanic-list li:last-child {
+.stardust-Gun-Reb-mechanic-list li:last-child {
   margin-bottom: 0;
 }
 
 /* 針對<li>加入 FontAwesome 小箭頭，並強制取消預設黑點 */
-div.post-body .stardust-Gun-Reb-mechanic-list li::before {
+.stardust-Gun-Reb-mechanic-list li::before {
   content: "\f105";
   font-family: "FontAwesome";
   position: absolute;
@@ -1487,7 +1491,7 @@ div.post-body .stardust-Gun-Reb-mechanic-list li::before {
 }
 
 /* 實戰細節 Box */
-div.post-body .stardust-Gun-Reb-skill-tactics {
+.stardust-Gun-Reb-skill-tactics {
   background: var(--color-surface-tertiary);
   border: 1px solid var(--color-border-primary);
   border-left: 3px solid var(--skill-theme);
@@ -1496,7 +1500,7 @@ div.post-body .stardust-Gun-Reb-skill-tactics {
   position: relative;
 }
 
-div.post-body .stardust-Gun-Reb-footer-title {
+.stardust-Gun-Reb-footer-title {
   font-family: "Oswald", "Microsoft JhengHei", sans-serif;
   font-weight: bold;
   font-size: 16px;
@@ -1508,26 +1512,26 @@ div.post-body .stardust-Gun-Reb-footer-title {
   letter-spacing: 1px;
 }
 
-div.post-body .stardust-Gun-Reb-footer-title i {
+.stardust-Gun-Reb-footer-title i {
   color: var(--skill-theme);
 }
 
-div.post-body .stardust-Gun-Reb-skill-tactics p {
+.stardust-Gun-Reb-skill-tactics p {
   margin: 0;
   font-size: 15px;
   line-height: 1.7;
   color: var(--color-text-secondary);
 }
 
-div.post-body .stardust-Gun-Reb-skill-tactics b {
+.stardust-Gun-Reb-skill-tactics b {
   color: var(--color-text-heading);
 }
 
 @media (max-width: 768px) {
-  div.post-body .stardust-Gun-Reb-skill-card {
+  .stardust-Gun-Reb-skill-card {
     flex-direction: column;
   }
-  div.post-body .stardust-Gun-Reb-skill-icon-box {
+  .stardust-Gun-Reb-skill-icon-box {
     width: 100%;
     height: 140px;
     border-right: none;
@@ -1537,7 +1541,7 @@ div.post-body .stardust-Gun-Reb-skill-tactics b {
 
 /* 英雄檔案卡核心設計 (Hero Profile - JS Data-Driven) */
 /* 核心卡片框體 */
-div.post-body .stardust-Gun-Reb-hp-card {
+.stardust-Gun-Reb-hp-card {
   display: flex;
   flex-direction: column;
   background: var(--color-surface-primary);
@@ -1550,19 +1554,19 @@ div.post-body .stardust-Gun-Reb-hp-card {
   transition: all 0.3s ease;
 }
 
-div.post-body .stardust-Gun-Reb-hp-card:hover {
+.stardust-Gun-Reb-hp-card:hover {
   box-shadow: 0 0 25px color-mix(in srgb, var(--sys-accent-color) 30%, transparent);
   border-color: var(--sys-accent-color);
 }
 
-div.post-body .stardust-Gun-Reb-hp-top-section {
+.stardust-Gun-Reb-hp-top-section {
   display: flex;
   align-items: stretch;
   border-bottom: 1px solid var(--color-border-secondary);
 }
 
 /* 角色立繪區 (加入 Lightbox 鼠標手勢支援) */
-div.post-body .stardust-Gun-Reb-hp-image-container {
+.stardust-Gun-Reb-hp-image-container {
   flex: 0 0 380px;
   position: relative;
   background: var(--color-surface-darker);
@@ -1570,7 +1574,7 @@ div.post-body .stardust-Gun-Reb-hp-image-container {
   overflow: hidden;
 }
 
-div.post-body .stardust-Gun-Reb-hp-image-container img {
+.stardust-Gun-Reb-hp-image-container img {
   width: 100%;
   height: 100% !important;
   min-height: 480px;
@@ -1581,12 +1585,12 @@ div.post-body .stardust-Gun-Reb-hp-image-container img {
   cursor: zoom-in;
 }
 
-div.post-body .stardust-Gun-Reb-hp-card:hover .stardust-Gun-Reb-hp-image-container img {
+.stardust-Gun-Reb-hp-card:hover .stardust-Gun-Reb-hp-image-container img {
   transform: scale(1.02);
 }
 
 /* 角色資訊面板 */
-div.post-body .stardust-Gun-Reb-hp-info-panel {
+.stardust-Gun-Reb-hp-info-panel {
   flex: 1;
   padding: 35px;
   display: flex;
@@ -1595,7 +1599,7 @@ div.post-body .stardust-Gun-Reb-hp-info-panel {
   backdrop-filter: blur(5px);
 }
 
-div.post-body .stardust-Gun-Reb-hp-name-row {
+.stardust-Gun-Reb-hp-name-row {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -1606,7 +1610,7 @@ div.post-body .stardust-Gun-Reb-hp-name-row {
   gap: 15px;
 }
 
-div.post-body .stardust-Gun-Reb-hp-name-row h2 {
+.stardust-Gun-Reb-hp-name-row h2 {
   margin: 0 !important;
   font-family: "Oswald", sans-serif;
   font-size: 36px;
@@ -1617,7 +1621,7 @@ div.post-body .stardust-Gun-Reb-hp-name-row h2 {
 }
 
 /* 角色定位系統列 */
-div.post-body .stardust-Gun-Reb-hp-role-hud {
+.stardust-Gun-Reb-hp-role-hud {
   text-align: right;
   border-right: 3px solid var(--sys-accent-color);
   padding-right: 15px;
@@ -1625,7 +1629,7 @@ div.post-body .stardust-Gun-Reb-hp-role-hud {
   margin-bottom: -4px;
 }
 
-div.post-body .stardust-Gun-Reb-hp-hud-label {
+.stardust-Gun-Reb-hp-hud-label {
   font-family: "Share Tech Mono", monospace;
   font-size: 11px;
   color: var(--color-text-secondary);
@@ -1636,7 +1640,7 @@ div.post-body .stardust-Gun-Reb-hp-hud-label {
   display: block !important;
 }
 
-div.post-body .stardust-Gun-Reb-hp-hud-value {
+.stardust-Gun-Reb-hp-hud-value {
   font-size: 16px;
   font-weight: bold;
   color: var(--color-text-heading);
@@ -1650,7 +1654,7 @@ div.post-body .stardust-Gun-Reb-hp-hud-value {
   line-height: 1.2 !important;
 }
 
-div.post-body .stardust-Gun-Reb-hp-hud-dot {
+.stardust-Gun-Reb-hp-hud-dot {
   display: inline-block;
   width: 6px;
   height: 6px;
@@ -1659,19 +1663,19 @@ div.post-body .stardust-Gun-Reb-hp-hud-dot {
   box-shadow: 0 0 8px var(--sys-accent-color);
 }
 
-div.post-body .stardust-Gun-Reb-hp-hud-slash {
+.stardust-Gun-Reb-hp-hud-slash {
   color: var(--sys-accent-color);
 }
 
 /* 角色介紹內文與亮點 */
-div.post-body .stardust-Gun-Reb-hp-desc-text {
+.stardust-Gun-Reb-hp-desc-text {
   line-height: 1.8;
   font-size: 16px;
   margin-bottom: 25px;
   color: var(--color-text-secondary);
 }
 
-div.post-body .stardust-Gun-Reb-hp-desc-text b {
+.stardust-Gun-Reb-hp-desc-text b {
   color: var(--color-text-heading);
   font-weight: bold;
   position: relative;
@@ -1679,7 +1683,7 @@ div.post-body .stardust-Gun-Reb-hp-desc-text b {
   padding-bottom: 2px;
 }
 
-div.post-body .stardust-Gun-Reb-hp-desc-text b::after {
+.stardust-Gun-Reb-hp-desc-text b::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -1691,7 +1695,7 @@ div.post-body .stardust-Gun-Reb-hp-desc-text b::after {
 }
 
 /* 優劣勢分析卡片 */
-div.post-body .stardust-Gun-Reb-hp-analysis-section {
+.stardust-Gun-Reb-hp-analysis-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
@@ -1699,7 +1703,7 @@ div.post-body .stardust-Gun-Reb-hp-analysis-section {
   padding: 0;
 }
 
-div.post-body .stardust-Gun-Reb-hp-procon-card {
+.stardust-Gun-Reb-hp-procon-card {
   background: var(--color-surface-tertiary);
   padding: 20px;
   border-radius: 6px;
@@ -1709,22 +1713,22 @@ div.post-body .stardust-Gun-Reb-hp-procon-card {
   transition: all 0.3s ease;
 }
 
-div.post-body .stardust-Gun-Reb-hp-procon-card:hover {
+.stardust-Gun-Reb-hp-procon-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-div.post-body .stardust-Gun-Reb-hp-tac-pros {
+.stardust-Gun-Reb-hp-tac-pros {
   border: 1px solid var(--color-border-primary);
   border-top: 3px solid var(--color-brand-green-tier);
 }
 
-div.post-body .stardust-Gun-Reb-hp-tac-cons {
+.stardust-Gun-Reb-hp-tac-cons {
   border: 1px solid var(--color-border-primary);
   border-top: 3px solid var(--color-brand-red);
 }
 
-div.post-body .stardust-Gun-Reb-hp-procon-title {
+.stardust-Gun-Reb-hp-procon-title {
   font-family: "Oswald", sans-serif;
   font-weight: bold;
   margin-bottom: 15px;
@@ -1732,21 +1736,21 @@ div.post-body .stardust-Gun-Reb-hp-procon-title {
   letter-spacing: 1px;
 }
 
-div.post-body .stardust-Gun-Reb-hp-tac-pros .stardust-Gun-Reb-hp-procon-title {
+.stardust-Gun-Reb-hp-tac-pros .stardust-Gun-Reb-hp-procon-title {
   color: var(--color-brand-green-tier);
 }
 
-div.post-body .stardust-Gun-Reb-hp-tac-cons .stardust-Gun-Reb-hp-procon-title {
+.stardust-Gun-Reb-hp-tac-cons .stardust-Gun-Reb-hp-procon-title {
   color: var(--color-brand-red);
 }
 
-div.post-body .stardust-Gun-Reb-hp-procon-list {
+.stardust-Gun-Reb-hp-procon-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-div.post-body .stardust-Gun-Reb-hp-procon-list li {
+.stardust-Gun-Reb-hp-procon-list li {
   position: relative;
   padding: 0 0 0 24px;
   margin: 0 0 10px 0;
@@ -1756,7 +1760,7 @@ div.post-body .stardust-Gun-Reb-hp-procon-list li {
   display: block;
 }
 
-div.post-body .stardust-Gun-Reb-hp-tac-pros .stardust-Gun-Reb-hp-procon-list li::before {
+.stardust-Gun-Reb-hp-tac-pros .stardust-Gun-Reb-hp-procon-list li::before {
   content: "\f00c" !important;
   font-family: "FontAwesome" !important;
   font-weight: 900;
@@ -1767,7 +1771,7 @@ div.post-body .stardust-Gun-Reb-hp-tac-pros .stardust-Gun-Reb-hp-procon-list li:
   font-size: 14px;
 }
 
-div.post-body .stardust-Gun-Reb-hp-tac-cons .stardust-Gun-Reb-hp-procon-list li::before {
+.stardust-Gun-Reb-hp-tac-cons .stardust-Gun-Reb-hp-procon-list li::before {
   content: "\f00d" !important;
   font-family: "FontAwesome" !important;
   font-weight: 900;
@@ -1779,13 +1783,13 @@ div.post-body .stardust-Gun-Reb-hp-tac-cons .stardust-Gun-Reb-hp-procon-list li:
 }
 
 /* 角色天賦列表 (底部) */
-div.post-body .stardust-Gun-Reb-hp-bottom-section {
+.stardust-Gun-Reb-hp-bottom-section {
   padding: 30px;
   position: relative;
   z-index: 2;
 }
 
-div.post-body .stardust-Gun-Reb-hp-section-label {
+.stardust-Gun-Reb-hp-section-label {
   font-family: "Share Tech Mono", sans-serif;
   font-weight: bold;
   font-size: 20px;
@@ -1798,7 +1802,7 @@ div.post-body .stardust-Gun-Reb-hp-section-label {
   text-transform: uppercase;
 }
 
-div.post-body .stardust-Gun-Reb-hp-section-label::after {
+.stardust-Gun-Reb-hp-section-label::after {
   content: "";
   flex: 1;
   height: 1px;
@@ -1806,13 +1810,13 @@ div.post-body .stardust-Gun-Reb-hp-section-label::after {
   opacity: 0.5;
 }
 
-div.post-body .stardust-Gun-Reb-hp-talent-list {
+.stardust-Gun-Reb-hp-talent-list {
   display: grid;
   grid-template-columns: 1fr;
   gap: 15px;
 }
 
-div.post-body .stardust-Gun-Reb-hp-talent-card {
+.stardust-Gun-Reb-hp-talent-card {
   display: flex;
   gap: 20px;
   background: var(--color-surface-tertiary);
@@ -1823,7 +1827,7 @@ div.post-body .stardust-Gun-Reb-hp-talent-card {
   align-items: center;
 }
 
-div.post-body .stardust-Gun-Reb-hp-talent-icon {
+.stardust-Gun-Reb-hp-talent-icon {
   width: 56px;
   height: 56px;
   display: flex;
@@ -1834,7 +1838,7 @@ div.post-body .stardust-Gun-Reb-hp-talent-icon {
   filter: none;
 }
 
-div.post-body .stardust-Gun-Reb-hp-talent-icon img {
+.stardust-Gun-Reb-hp-talent-icon img {
   width: 112%;
   height: 112%;
   margin-top: -6%;
@@ -1845,14 +1849,14 @@ div.post-body .stardust-Gun-Reb-hp-talent-icon img {
   cursor: zoom-in;
 }
 
-div.post-body .stardust-Gun-Reb-hp-talent-desc h4 {
+.stardust-Gun-Reb-hp-talent-desc h4 {
   margin: 0 0 6px 0;
   font-size: 18px;
   color: var(--sys-accent-color);
   letter-spacing: 0.5px;
 }
 
-div.post-body .stardust-Gun-Reb-hp-talent-desc p {
+.stardust-Gun-Reb-hp-talent-desc p {
   margin: 0;
   font-size: 16px;
   color: var(--color-text-secondary);
@@ -1861,23 +1865,23 @@ div.post-body .stardust-Gun-Reb-hp-talent-desc p {
 
 /* 響應式手機版 */
 @media (max-width: 768px) {
-  div.post-body .stardust-Gun-Reb-hp-top-section {
+  .stardust-Gun-Reb-hp-top-section {
     flex-direction: column;
   }
-  div.post-body .stardust-Gun-Reb-hp-image-container {
+  .stardust-Gun-Reb-hp-image-container {
     flex: none;
     width: 100%;
     height: 350px;
     border-right: none;
     border-bottom: 1px solid var(--color-border-secondary);
   }
-  div.post-body .stardust-Gun-Reb-hp-analysis-section {
+  .stardust-Gun-Reb-hp-analysis-section {
     grid-template-columns: 1fr;
   }
 }
 /* 緊湊型全息戰術矩陣  */
 /* 矩陣容器背景 */
-div.post-body .stardust-Gun-Reb-matrix-container {
+.stardust-Gun-Reb-matrix-container {
   position: relative;
   background-color: var(--color-surface-primary);
   padding: 25px;
@@ -1887,7 +1891,7 @@ div.post-body .stardust-Gun-Reb-matrix-container {
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 25px), calc(100% - 25px) 100%, 0 100%);
   margin-bottom: 30px;
 }
-div.post-body .stardust-Gun-Reb-matrix-container::after {
+.stardust-Gun-Reb-matrix-container::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -1899,14 +1903,14 @@ div.post-body .stardust-Gun-Reb-matrix-container::after {
 }
 
 /* 緊湊網格排列 (支援 Mobile First) */
-div.post-body .stardust-Gun-Reb-matrix-grid {
+.stardust-Gun-Reb-matrix-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 15px;
 }
 
 /* 切角發光卡片 */
-div.post-body .stardust-Gun-Reb-matrix-card {
+.stardust-Gun-Reb-matrix-card {
   position: relative;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -1918,7 +1922,7 @@ div.post-body .stardust-Gun-Reb-matrix-card {
   justify-content: center;
   --theme-color: var(--sys-accent-color); /* 預設使用主色 */
 }
-div.post-body .stardust-Gun-Reb-matrix-card::before {
+.stardust-Gun-Reb-matrix-card::before {
   content: "";
   position: absolute;
   top: 0;
@@ -1929,18 +1933,18 @@ div.post-body .stardust-Gun-Reb-matrix-card::before {
   opacity: 0.5;
   transition: 0.3s;
 }
-div.post-body .stardust-Gun-Reb-matrix-card:hover {
+.stardust-Gun-Reb-matrix-card:hover {
   background: color-mix(in srgb, var(--theme-color) 8%, rgba(255, 255, 255, 0.02));
   border-color: color-mix(in srgb, var(--theme-color) 30%, transparent);
 }
-div.post-body .stardust-Gun-Reb-matrix-card:hover::before {
+.stardust-Gun-Reb-matrix-card:hover::before {
   width: 4px;
   opacity: 1;
   box-shadow: 0 0 12px var(--theme-color);
 }
 
 /* 卡片標題與內文 */
-div.post-body .stardust-Gun-Reb-matrix-card-title {
+.stardust-Gun-Reb-matrix-card-title {
   font-size: 18px;
   font-weight: 700;
   color: var(--color-text-heading);
@@ -1949,11 +1953,11 @@ div.post-body .stardust-Gun-Reb-matrix-card-title {
   align-items: center;
   gap: 8px;
 }
-div.post-body .stardust-Gun-Reb-matrix-card-title i {
+.stardust-Gun-Reb-matrix-card-title i {
   color: var(--theme-color);
   font-size: 18px;
 }
-div.post-body .stardust-Gun-Reb-matrix-card-desc {
+.stardust-Gun-Reb-matrix-card-desc {
   font-size: 16px;
   color: var(--color-text-secondary);
   line-height: 1.6;
@@ -1961,12 +1965,12 @@ div.post-body .stardust-Gun-Reb-matrix-card-desc {
   position: relative;
   z-index: 2;
 }
-div.post-body .stardust-Gun-Reb-matrix-card-desc b {
+.stardust-Gun-Reb-matrix-card-desc b {
   color: var(--color-text-heading);
 }
 
 /* 卡片背景浮水印 */
-div.post-body .stardust-Gun-Reb-matrix-watermark {
+.stardust-Gun-Reb-matrix-watermark {
   position: absolute;
   bottom: -8px;
   right: 2px;
@@ -1979,13 +1983,13 @@ div.post-body .stardust-Gun-Reb-matrix-watermark {
   z-index: 1;
   transition: 0.3s;
 }
-div.post-body .stardust-Gun-Reb-matrix-card:hover .stardust-Gun-Reb-matrix-watermark {
+.stardust-Gun-Reb-matrix-card:hover .stardust-Gun-Reb-matrix-watermark {
   opacity: 0.1;
   transform: scale(1.05) translateX(-5px);
 }
 /*  EXO STARDUST 模組：系統終端機流派目錄 (Terminal Style) */
 /* 終端機主容器 */
-div.post-body .stardust-Gun-Reb-terminal {
+.stardust-Gun-Reb-terminal {
   margin: 0 25px 40px 25px; /* ★ 左右加上 25px，完美對齊標題的紅線 */
   background: var(--color-surface-primary);
   border: 1px solid var(--color-border-primary);
@@ -1995,15 +1999,15 @@ div.post-body .stardust-Gun-Reb-terminal {
 }
 
 /* 目錄群組 */
-div.post-body .stardust-Gun-Reb-term-group {
+.stardust-Gun-Reb-term-group {
   margin-bottom: 25px;
 }
-div.post-body .stardust-Gun-Reb-term-group:last-child {
+.stardust-Gun-Reb-term-group:last-child {
   margin-bottom: 0;
 }
 
 /* 終端機指令標題 */
-div.post-body .stardust-Gun-Reb-term-header {
+.stardust-Gun-Reb-term-header {
   font-family: "Share Tech Mono", monospace;
   font-size: 16px;
   color: var(--group-color);
@@ -2014,11 +2018,11 @@ div.post-body .stardust-Gun-Reb-term-header {
   border-bottom: 1px dashed color-mix(in srgb, var(--group-color) 40%, transparent);
   padding-bottom: 8px;
 }
-div.post-body .stardust-Gun-Reb-term-header::before {
+.stardust-Gun-Reb-term-header::before {
   content: ">";
   font-weight: bold;
 }
-div.post-body .stardust-Gun-Reb-term-header::after {
+.stardust-Gun-Reb-term-header::after {
   content: "█";
   animation: stardust-Gun-Reb-blink 1s infinite;
   font-size: 14px;
@@ -2036,7 +2040,7 @@ div.post-body .stardust-Gun-Reb-term-header::after {
 }
 
 /* 網格系統：自動排版 (最小240px寬，電腦版約3個，手機版1個) */
-div.post-body .stardust-Gun-Reb-term-grid {
+.stardust-Gun-Reb-term-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 15px;
@@ -2044,7 +2048,7 @@ div.post-body .stardust-Gun-Reb-term-grid {
 }
 
 /* 代碼框卡片設計 */
-div.post-body .stardust-Gun-Reb-term-card {
+.stardust-Gun-Reb-term-card {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -2055,14 +2059,14 @@ div.post-body .stardust-Gun-Reb-term-card {
   transition: all 0.2s ease;
   position: relative;
 }
-div.post-body .stardust-Gun-Reb-term-card:hover {
+.stardust-Gun-Reb-term-card:hover {
   background: color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 10%, transparent);
   border-style: solid;
   border-color: color-mix(in srgb, var(--stardust-Gun-Reb-card-theme) 40%, transparent);
 }
 
 /* 共用頭像圖標 */
-div.post-body .stardust-Gun-Reb-term-icon {
+.stardust-Gun-Reb-term-icon {
   width: 50px;
   height: 50px;
   flex-shrink: 0;
@@ -2071,24 +2075,24 @@ div.post-body .stardust-Gun-Reb-term-icon {
   border: 1px solid var(--color-border-secondary);
   overflow: hidden;
 }
-div.post-body .stardust-Gun-Reb-term-icon img {
+.stardust-Gun-Reb-term-icon img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   cursor: zoom-in;
   transition: transform 0.3s ease;
 }
-div.post-body .stardust-Gun-Reb-term-card:hover .stardust-Gun-Reb-term-icon img {
+.stardust-Gun-Reb-term-card:hover .stardust-Gun-Reb-term-icon img {
   transform: scale(1.1);
 }
 
 /* 標題與內文 */
-div.post-body .stardust-Gun-Reb-term-info {
+.stardust-Gun-Reb-term-info {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-div.post-body .stardust-Gun-Reb-term-info h4 {
+.stardust-Gun-Reb-term-info h4 {
   margin: 0;
   font-size: 16px;
   font-weight: 700;
@@ -2096,14 +2100,14 @@ div.post-body .stardust-Gun-Reb-term-info h4 {
   display: inline-block;
   width: fit-content;
 }
-div.post-body .stardust-Gun-Reb-term-info p {
+.stardust-Gun-Reb-term-info p {
   margin: 0;
   font-size: 13px;
   color: var(--color-text-secondary);
   line-height: 1.4;
 }
 /* 靈佑卡片專用的垂直列表容器 */
-div.post-body .stardust-Gun-Reb-term-list {
+.stardust-Gun-Reb-term-list {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -2112,14 +2116,14 @@ div.post-body .stardust-Gun-Reb-term-list {
 
 /* 手機版微調：取消左邊距，讓卡片撐滿螢幕 */
 @media (max-width: 768px) {
-  div.post-body .stardust-Gun-Reb-term-list {
+  .stardust-Gun-Reb-term-list {
     padding-left: 0;
   }
 }
 
 /* 手機版微調 */
 @media (max-width: 768px) {
-  div.post-body .stardust-Gun-Reb-term-grid {
+  .stardust-Gun-Reb-term-grid {
     padding-left: 0;
   }
 }
@@ -2127,28 +2131,32 @@ div.post-body .stardust-Gun-Reb-term-list {
 /* ============================================================
    ★ 主題色彩控制類別 (確保金色正常顯示) ★
    ============================================================ */
-div.post-body .stardust-Gun-Reb-theme-red {
+.stardust-Gun-Reb-theme-red {
   --group-color: var(--color-brand-red);
   --stardust-Gun-Reb-card-theme: var(--color-brand-red);
 }
-div.post-body .stardust-Gun-Reb-theme-orange {
+.stardust-Gun-Reb-theme-orange {
   --group-color: var(--color-brand-orange);
   --stardust-Gun-Reb-card-theme: var(--color-brand-orange);
 }
-div.post-body .stardust-Gun-Reb-theme-cyan {
+.stardust-Gun-Reb-theme-cyan {
   --group-color: var(--color-brand-cyan);
   --stardust-Gun-Reb-card-theme: var(--color-brand-cyan);
 }
-div.post-body .stardust-Gun-Reb-theme-green {
+.stardust-Gun-Reb-theme-blue {
+  --group-color: var(--color-brand-blue);
+  --stardust-Gun-Reb-card-theme: var(--color-brand-blue);
+}
+.stardust-Gun-Reb-theme-green {
   --group-color: var(--color-brand-green-tier);
   --stardust-Gun-Reb-card-theme: var(--color-brand-green-tier);
 }
 /* 核心修正：加入 --group-color */
-div.post-body .stardust-Gun-Reb-theme-gold {
+.stardust-Gun-Reb-theme-gold {
   --group-color: var(--color-brand-gold);
   --stardust-Gun-Reb-card-theme: var(--color-brand-gold);
 }
-div.post-body .stardust-Gun-Reb-theme-brown {
+.stardust-Gun-Reb-theme-brown {
   --group-color: var(--color-brand-brown);
   --stardust-Gun-Reb-card-theme: var(--color-brand-brown);
 }
@@ -2158,19 +2166,19 @@ div.post-body .stardust-Gun-Reb-theme-brown {
    ============================================================ */
 
 /* 秘卷群組主容器 */
-div.post-body .stardust-Gun-Reb-scroll-group {
+.stardust-Gun-Reb-scroll-group {
   margin: 0 25px 35px 25px; /* ★ 左右加上 25px，完美對齊標題的紅線 */
 }
 
 /* --- 標題區塊 (科技感對角線與導引線) --- */
-div.post-body .stardust-Gun-Reb-scroll-header {
+.stardust-Gun-Reb-scroll-header {
   display: flex;
   align-items: center;
   gap: 15px;
   margin-bottom: 15px;
 }
 
-div.post-body .stardust-Gun-Reb-scroll-badge {
+.stardust-Gun-Reb-scroll-badge {
   position: relative;
   width: 44px;
   height: 44px;
@@ -2182,7 +2190,7 @@ div.post-body .stardust-Gun-Reb-scroll-badge {
   background: color-mix(in srgb, var(--group-color) 8%, transparent);
 }
 
-div.post-body .stardust-Gun-Reb-scroll-badge::before {
+.stardust-Gun-Reb-scroll-badge::before {
   content: "";
   position: absolute;
   top: 0;
@@ -2193,7 +2201,7 @@ div.post-body .stardust-Gun-Reb-scroll-badge::before {
   border-left: 2px solid var(--group-color);
 }
 
-div.post-body .stardust-Gun-Reb-scroll-badge::after {
+.stardust-Gun-Reb-scroll-badge::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -2204,7 +2212,7 @@ div.post-body .stardust-Gun-Reb-scroll-badge::after {
   border-right: 2px solid var(--group-color);
 }
 
-div.post-body .stardust-Gun-Reb-scroll-title-wrap {
+.stardust-Gun-Reb-scroll-title-wrap {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2212,7 +2220,7 @@ div.post-body .stardust-Gun-Reb-scroll-title-wrap {
   flex: 1;
 }
 
-div.post-body .stardust-Gun-Reb-scroll-sys-text {
+.stardust-Gun-Reb-scroll-sys-text {
   font-family: "Share Tech Mono", monospace;
   font-size: 11px;
   color: var(--group-color);
@@ -2223,14 +2231,14 @@ div.post-body .stardust-Gun-Reb-scroll-sys-text {
   gap: 10px;
 }
 
-div.post-body .stardust-Gun-Reb-scroll-sys-text::after {
+.stardust-Gun-Reb-scroll-sys-text::after {
   content: "";
   flex: 1;
   height: 1px;
   background: linear-gradient(90deg, color-mix(in srgb, var(--group-color) 40%, transparent), transparent);
 }
 
-div.post-body .stardust-Gun-Reb-scroll-title-wrap h4 {
+.stardust-Gun-Reb-scroll-title-wrap h4 {
   margin: 0;
   font-size: 20px;
   font-family: "Oswald", "Noto Sans TC", sans-serif;
@@ -2240,7 +2248,7 @@ div.post-body .stardust-Gun-Reb-scroll-title-wrap h4 {
 }
 
 /* --- 內部圖標插槽區塊 --- */
-div.post-body .stardust-Gun-Reb-scroll-box {
+.stardust-Gun-Reb-scroll-box {
   background: var(--color-surface-secondary);
   border: 1px solid var(--color-border-primary);
   border-left: 3px solid var(--group-color);
@@ -2250,18 +2258,18 @@ div.post-body .stardust-Gun-Reb-scroll-box {
   box-sizing: border-box; /* 確保 padding 不會撐破容器 */
 }
 
-div.post-body .stardust-Gun-Reb-scroll-row {
+.stardust-Gun-Reb-scroll-row {
   display: flex;
   align-items: flex-start;
   gap: 20px;
   margin-bottom: 18px;
 }
 
-div.post-body .stardust-Gun-Reb-scroll-row:last-child {
+.stardust-Gun-Reb-scroll-row:last-child {
   margin-bottom: 0;
 }
 
-div.post-body .stardust-Gun-Reb-scroll-label {
+.stardust-Gun-Reb-scroll-label {
   font-size: 14px;
   font-weight: bold;
   color: var(--color-text-secondary);
@@ -2271,7 +2279,7 @@ div.post-body .stardust-Gun-Reb-scroll-label {
 }
 
 /* 圖標網格 (自動換行) */
-div.post-body .stardust-Gun-Reb-scroll-grid {
+.stardust-Gun-Reb-scroll-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -2279,7 +2287,7 @@ div.post-body .stardust-Gun-Reb-scroll-grid {
 }
 
 /* 單一秘卷圖標 (Inventory Slot) */
-div.post-body .stardust-Gun-Reb-scroll-item {
+.stardust-Gun-Reb-scroll-item {
   width: 42px;
   height: 42px;
   background: var(--color-surface-darker);
@@ -2292,13 +2300,13 @@ div.post-body .stardust-Gun-Reb-scroll-item {
   flex-shrink: 0;
 }
 
-div.post-body .stardust-Gun-Reb-scroll-item img {
+.stardust-Gun-Reb-scroll-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-div.post-body .stardust-Gun-Reb-scroll-item:hover {
+.stardust-Gun-Reb-scroll-item:hover {
   border-color: var(--group-color);
   transform: translateY(-2px) scale(1.05);
   box-shadow: 0 0 10px color-mix(in srgb, var(--group-color) 40%, transparent);
@@ -2306,12 +2314,12 @@ div.post-body .stardust-Gun-Reb-scroll-item:hover {
 
 /* 手機版排版調整：文字標籤移到圖標上方 */
 @media (max-width: 768px) {
-  div.post-body .stardust-Gun-Reb-scroll-row {
+  .stardust-Gun-Reb-scroll-row {
     flex-direction: column;
     gap: 8px;
     margin-bottom: 20px;
   }
-  div.post-body .stardust-Gun-Reb-scroll-label {
+  .stardust-Gun-Reb-scroll-label {
     width: auto;
     padding-top: 0;
     color: var(--color-text-heading);
@@ -2322,7 +2330,7 @@ div.post-body .stardust-Gun-Reb-scroll-item:hover {
    ============================================================ */
 
 /* 1. 終端機容器背景 (對齊標題紅線) */
-div.post-body .stardust-Gun-Reb-weapon-terminal {
+.stardust-Gun-Reb-weapon-terminal {
   background: var();
   border: 1px solid var(--color-border-primary);
   border-radius: 8px;
@@ -2333,14 +2341,14 @@ div.post-body .stardust-Gun-Reb-weapon-terminal {
 }
 
 /* 2. 武器艙橫向排列 */
-div.post-body .stardust-Gun-Reb-weapon-row {
+.stardust-Gun-Reb-weapon-row {
   display: flex;
   gap: 20px;
   margin-bottom: 20px;
 }
 
 /* 單個裝備艙 (左/右大框框) */
-div.post-body .stardust-Gun-Reb-weapon-bay {
+.stardust-Gun-Reb-weapon-bay {
   flex: 1;
   background: var(--color-surface-tertiary);
   border: 1px solid var(--color-border-primary);
@@ -2354,7 +2362,7 @@ div.post-body .stardust-Gun-Reb-weapon-bay {
 }
 
 /* 裝備艙科技標籤 */
-div.post-body .stardust-Gun-Reb-weapon-label {
+.stardust-Gun-Reb-weapon-label {
   font-family: "Share Tech Mono", monospace;
   font-size: 11px;
   color: var(--group-color);
@@ -2367,13 +2375,13 @@ div.post-body .stardust-Gun-Reb-weapon-label {
 }
 
 /* 武器圖標網格 (支援多圖) */
-div.post-body .stardust-Gun-Reb-weapon-icons {
+.stardust-Gun-Reb-weapon-icons {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-div.post-body .stardust-Gun-Reb-weapon-item {
+.stardust-Gun-Reb-weapon-item {
   width: 48px;
   height: 48px;
   background: var(--color-surface-darker);
@@ -2384,12 +2392,12 @@ div.post-body .stardust-Gun-Reb-weapon-item {
   flex-shrink: 0;
 }
 
-div.post-body .stardust-Gun-Reb-weapon-item:hover {
+.stardust-Gun-Reb-weapon-item:hover {
   border-color: var(--group-color);
   box-shadow: 0 0 10px color-mix(in srgb, var(--group-color) 40%, transparent);
 }
 
-div.post-body .stardust-Gun-Reb-weapon-item img {
+.stardust-Gun-Reb-weapon-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -2397,7 +2405,7 @@ div.post-body .stardust-Gun-Reb-weapon-item img {
 }
 
 /* 3. 雙子銘刻 (左右兩端對齊) */
-div.post-body .stardust-Gun-Reb-gemini-box {
+.stardust-Gun-Reb-gemini-box {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2408,7 +2416,7 @@ div.post-body .stardust-Gun-Reb-gemini-box {
   margin-bottom: 20px;
 }
 
-div.post-body .stardust-Gun-Reb-gemini-label {
+.stardust-Gun-Reb-gemini-label {
   font-family: "Share Tech Mono", monospace;
   color: var(--color-text-secondary);
   font-weight: bold;
@@ -2418,7 +2426,7 @@ div.post-body .stardust-Gun-Reb-gemini-label {
   gap: 8px;
 }
 
-div.post-body .stardust-Gun-Reb-gemini-value {
+.stardust-Gun-Reb-gemini-value {
   font-weight: bold;
   font-size: 15px;
   color: var(--group-color); /* 數值跟隨主題色 */
@@ -2426,7 +2434,7 @@ div.post-body .stardust-Gun-Reb-gemini-value {
 }
 
 /* 4. 推薦理由 (左側發光條樣式) */
-div.post-body .stardust-Gun-Reb-logic-box {
+.stardust-Gun-Reb-logic-box {
   background: var(--color-surface-tertiary);
   border: 1px solid var(--color-border-primary);
   border-left: 3px solid var(--group-color);
@@ -2437,7 +2445,7 @@ div.post-body .stardust-Gun-Reb-logic-box {
   line-height: 1.6;
 }
 
-div.post-body .stardust-Gun-Reb-logic-box b {
+.stardust-Gun-Reb-logic-box b {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -2448,11 +2456,17 @@ div.post-body .stardust-Gun-Reb-logic-box b {
 
 /* 手機版排版切換 */
 @media (max-width: 768px) {
-  div.post-body .stardust-Gun-Reb-weapon-row {
+  .stardust-Gun-Reb-weapon-row {
     flex-direction: column;
     gap: 20px;
   }
-  div.post-body .stardust-Gun-Reb-weapon-terminal {
+  .stardust-Gun-Reb-weapon-terminal {
     margin: 0 20px 30px 20px;
   }
+}
+
+
+/* ???拳皜豢??????*/
+.stardust-Gun-Reb-lightbox-trigger {
+  cursor: zoom-in !important;
 }

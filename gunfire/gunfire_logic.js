@@ -1,15 +1,49 @@
 const gunfireApp = (function () {
   "use strict";
 
+  // ============================================================
+  // ★ 模組化配置 (Modular Configurations) ★
+  // 將所有寫死的常數、配色及預設佔位圖配置提取於此
+  // ============================================================
+  const CONFIG = {
+    themeColors: {
+      gold: "var(--color-brand-gold)",
+      cyan: "var(--color-brand-cyan)",
+      blue: "var(--color-brand-blue)",
+      green: "var(--color-brand-green-tier)",
+      red: "var(--color-brand-red)",
+      orange: "var(--color-brand-orange)",
+      brown: "var(--color-brand-brown)",
+    },
+    tierColors: {
+      rare: "#b026ff",       // 紫色
+      legendary: "#ffcc00",  // 金色
+      normal: "#00e5ff",     // 藍色
+      cursed: "#ff3333",     // 紅色
+    },
+    placeholders: {
+      hero: (name) => `https://placehold.co/400x500/111/ffcc00?text=${encodeURIComponent(name)}`,
+      talent: (title) => `https://placehold.co/100x100/111/00e5ff?text=${encodeURIComponent(title)}`,
+      blessing: (title) => `https://placehold.co/150x150/111/ff8c00?text=${encodeURIComponent(title)}`,
+      linkTop: (name) => `https://placehold.co/80x80/111/ff8c00?text=${encodeURIComponent(name)}`,
+      linkChip: (name) => `https://placehold.co/60x60/111/00e5ff?text=${encodeURIComponent(name.substring(0, 2))}`,
+      achievement: (title) => `https://placehold.co/100x100/111/ffcc00?text=${encodeURIComponent(title)}`
+    },
+    storageKeyPrefix: "ach_data_"
+  };
+
   /**
    * Gun-Reb 專屬系統主模組 (單例模式)
    * 負責所有的資料渲染 (Data-Driven) 與 UI 互動初始化
    */
   const StardustGunReb = {
+    heroName: null, // 快取英雄名稱，避免多次 DOM 查詢
+
     /**
      * 初始化生命週期：依序執行各個模組的 DOM 渲染與事件綁定
      */
     init() {
+      this.cacheHeroName(); // 在覆寫 DOM 之前，先快取英雄資料屬性
       this.renderMatrixCards();
       this.renderHeroProfile();
       this.renderSkillCards();
@@ -31,20 +65,24 @@ const gunfireApp = (function () {
     },
 
     /**
+     * 讀取並快取當前頁面的英雄名稱
+     * 由於 renderHeroProfile 會重寫 HTML 導致原始標籤消失，此動作必須在 init 起始執行
+     */
+    cacheHeroName() {
+      if (this.heroName) return this.heroName;
+      const container = document.getElementById("stardust-Gun-Reb-hero-profile-container");
+      const heroData = container?.querySelector(".stardust-Gun-Reb-hero-data");
+      this.heroName = heroData?.getAttribute("data-hero-name") || "SYS_ERROR";
+      return this.heroName;
+    },
+
+    /**
      * 獲取對應的 CSS 變數主題色
-     * @param {string} themeName - 主題標籤 (如: gold, cyan)
-     * @returns {string} 對應的 CSS 變數，若無則回傳系統預設色
      */
     getThemeColor(themeName) {
-      const themes = {
-        gold: "var(--color-brand-gold)",
-        cyan: "var(--color-brand-cyan)",
-        green: "var(--color-brand-green-tier)",
-        red: "var(--color-brand-red)",
-        orange: "var(--color-brand-orange)",
-      };
-      return themes[themeName] || "var(--sys-accent-color)";
+      return CONFIG.themeColors[themeName] || "var(--sys-accent-color)";
     },
+
     /**
      * [模組] 戰術矩陣懶人包渲染器 (Data-Driven)
      */
@@ -59,7 +97,6 @@ const gunfireApp = (function () {
       let htmlOutput = `<div class="stardust-Gun-Reb-matrix-grid">`;
 
       dataItems.forEach((item, index) => {
-        // 1. 讀取配置與防呆機制
         const title = item.getAttribute("data-title") || "未命名核心";
         const icon = item.getAttribute("data-icon") || "fa-solid fa-microchip";
         const theme = item.getAttribute("data-theme") || "default";
@@ -68,10 +105,10 @@ const gunfireApp = (function () {
         const watermarkNum = item.getAttribute("data-num") || String(index + 1).padStart(2, "0");
         const themeVar = this.getThemeColor(theme);
 
-        // 2. 抓取語法糖內的純淨 HTML 結構
+        // 抓取語法糖內的純淨 HTML 結構
         const content = item.innerHTML.trim();
 
-        // 3. 封裝賽博風卡片結構
+        // 封裝賽博風卡片結構
         htmlOutput += `
           <div class="stardust-Gun-Reb-matrix-card" style="--theme-color: ${themeVar};">
             <div class="stardust-Gun-Reb-matrix-card-title">
@@ -87,16 +124,11 @@ const gunfireApp = (function () {
       });
 
       htmlOutput += `</div>`;
-
-      // 覆寫並渲染，將語法糖轉換為真實 DOM
-      container.innerHTML = htmlOutput;
-
-      // 確保如有新增圖片能與全局 Lightbox 連動
-      setTimeout(() => this.initLightbox(), 100);
+      container.innerHTML = htmlOutput; // 覆寫並渲染，將語法糖轉換為真實 DOM
     },
+
     /**
      * [模組] 全息英雄機密檔案卡渲染器 (Data-Driven 升級版)
-     * 已支援自動從 STARDUST_ASSETS 讀取「立繪」與「天賦列表」
      */
     renderHeroProfile() {
       const container = document.getElementById("stardust-Gun-Reb-hero-profile-container");
@@ -105,22 +137,21 @@ const gunfireApp = (function () {
       const heroData = container.querySelector(".stardust-Gun-Reb-hero-data");
       if (!heroData) return;
 
-      const name = heroData.getAttribute("data-hero-name") || "SYS_ERROR";
+      const name = this.cacheHeroName();
       const dbHero = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.gunfire?.Heroes?.[name]) || null;
-
       const imgPos = heroData.getAttribute("data-hero-img-pos") || "center top";
 
       // 取得立繪 (優先讀取資料庫)
       let rawImg = heroData.getAttribute("data-hero-img");
       if (dbHero?.Role?.[name]?.img) rawImg = dbHero.Role[name].img;
-      const img = rawImg || `https://placehold.co/400x500/111/ffcc00?text=${name}`;
+      const img = rawImg || CONFIG.placeholders.hero(name);
 
       const role = heroData.getAttribute("data-hero-role") || "未定";
       const prosRaw = heroData.getAttribute("data-pros") || "";
       const consRaw = heroData.getAttribute("data-cons") || "";
       const descHtml = heroData.querySelector(".stardust-Gun-Reb-hero-desc")?.innerHTML || "";
 
-      // 渲染定位 HUD 與優缺點 (邏輯同前)
+      // 渲染定位 HUD 與優缺點
       let roleHtml = "";
       role.split("/").forEach((part, i) => {
         roleHtml += `${i === 0 ? '<span class="stardust-Gun-Reb-hp-hud-dot"></span>' : '<span class="stardust-Gun-Reb-hp-hud-slash">/</span>'}${part.trim()}`;
@@ -134,9 +165,8 @@ const gunfireApp = (function () {
         if (c.trim()) consHtml += `<li>${c.trim()}</li>`;
       });
 
-      // --- [核心修改：SEO 友善的天賦渲染] ---
+      // --- [天賦渲染] ---
       let talentsHtml = "";
-      // 抓取 HTML 裡預留的 SEO H4 標籤
       const seoTalentItems = container.querySelectorAll(".stardust-Gun-Reb-talent-item");
 
       if (seoTalentItems.length > 0) {
@@ -145,7 +175,7 @@ const gunfireApp = (function () {
 
           // 從資料庫匹配資料
           const dbData = dbHero?.talents?.[title] || {};
-          const tFallbackImg = `https://placehold.co/100x100/111/00e5ff?text=${encodeURIComponent(title)}`;
+          const tFallbackImg = CONFIG.placeholders.talent(title);
           const tImg = dbData.img || tFallbackImg;
           const tDesc = dbData.desc || "SYS_NO_DATA // 暫無數據";
 
@@ -162,7 +192,7 @@ const gunfireApp = (function () {
         });
       }
 
-      // 輸出最終結構 (略，同之前版本，確保 innerHTML 包含 talentsHtml)
+      // 輸出最終結構
       const finalHtml = `
           <div class="stardust-Gun-Reb-hp-card">
             <div class="stardust-Gun-Reb-hp-top-section">
@@ -199,8 +229,8 @@ const gunfireApp = (function () {
           </div>
       `;
       container.innerHTML = finalHtml;
-      setTimeout(() => this.initLightbox(), 100);
     },
+
     /**
      * [模組] 技能卡片渲染器
      */
@@ -210,17 +240,11 @@ const gunfireApp = (function () {
       const dataItems = container.querySelectorAll(".stardust-Gun-Reb-skill-item");
       if (dataItems.length === 0) return;
 
-      // 1. [核心修復] 取得當前英雄名稱
-      // 因為上一步的渲染已經覆寫了 HTML，我們改去抓剛產生的 <h2> 標籤內容
-      const nameEl = document.querySelector(".stardust-Gun-Reb-hp-name-row h2");
-      const heroName = nameEl ? nameEl.textContent.trim() : "SYS_ERROR";
-
-      // 2. 獲取資料庫中的英雄物件
+      const heroName = this.cacheHeroName();
       const dbHero = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.gunfire?.Heroes?.[heroName]) || null;
 
       let htmlOutput = "";
       dataItems.forEach((item) => {
-        // [SEO 核心] 抓取 H4 作為查詢鍵值
         const h4Tag = item.querySelector("h4");
         const title = h4Tag ? h4Tag.textContent.trim() : item.getAttribute("data-title") || "SYS_ERROR";
 
@@ -232,10 +256,10 @@ const gunfireApp = (function () {
         const key = item.getAttribute("data-key") || "E";
         const typeText = item.getAttribute("data-type-text") || "技能 // SKILL";
 
-        // 3. 圖片對接 (優先級：資料庫 > HTML舊資料 > 系統佔位圖)
+        // 圖片對接 (優先級：資料庫 > HTML舊資料 > 系統佔位圖)
         const rawImg = item.getAttribute("data-img");
         const dbImg = dbSkill.img;
-        const fallbackImg = `https://placehold.co/100x100/111/ffcc00?text=${encodeURIComponent(title)}`;
+        const fallbackImg = CONFIG.placeholders.talent(title);
         const finalImg = dbImg || (rawImg && rawImg.trim() !== "" ? rawImg : fallbackImg);
 
         // 狀態標籤
@@ -249,11 +273,11 @@ const gunfireApp = (function () {
           });
         }
 
-        // 4. 基礎描述對接 (優先級：資料庫 > HTML舊資料)
+        // 基礎描述對接 (優先級：資料庫 > HTML舊資料)
         const rawDescHtml = item.querySelector(".stardust-Gun-Reb-s-desc")?.innerHTML || "";
         const descHtml = dbSkill.desc || rawDescHtml || "SYS_NO_DATA // 暫無基礎描述";
 
-        // 實戰機制與細節 (因為是攻略特定內容，保留在 HTML 彈性編寫並直接讀取)
+        // 實戰機制與細節 (保留在 HTML 彈性編寫並直接讀取)
         const mechHtml = item.querySelector(".stardust-Gun-Reb-s-mech")?.innerHTML || "";
         const tacHtml = item.querySelector(".stardust-Gun-Reb-s-tac")?.innerHTML || "";
 
@@ -307,13 +331,10 @@ const gunfireApp = (function () {
       });
 
       container.innerHTML = htmlOutput;
-      // 綁定動態生成的圖片點擊放大事件
-      setTimeout(() => this.initLightbox(), 100);
     },
 
     /**
      * [模組] 靈佑卡片渲染器 (Data-Driven 升級版)
-     * 從資料庫抓取圖片與全息提示 (data-tip)，並保留 HTML H4 以增強 SEO。
      */
     renderBlessingCards() {
       const container = document.getElementById("stardust-Gun-Reb-blessing-container");
@@ -321,21 +342,18 @@ const gunfireApp = (function () {
       const dataItems = container.querySelectorAll(".stardust-Gun-Reb-data-item");
       if (dataItems.length === 0) return;
 
-      // 1. [核心對接] 取得當前英雄名稱 (從剛產生的 <h2> 抓取)
-      const nameEl = document.querySelector(".stardust-Gun-Reb-hp-name-row h2");
-      const heroName = nameEl ? nameEl.textContent.trim() : "SYS_ERROR";
+      const heroName = this.cacheHeroName();
       const dbHero = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.gunfire?.Heroes?.[heroName]) || null;
 
       let htmlOutput = "";
       dataItems.forEach((item) => {
-        // 2. [SEO 升級] 優先讀取 H4 標籤
         const h4Tag = item.querySelector("h4");
         const title = h4Tag ? h4Tag.textContent.trim() : item.getAttribute("data-title") || "SYS_ERROR";
 
-        // 3. 從資料庫讀取該靈佑資料
+        // 從資料庫讀取該靈佑資料
         const dbBlessing = dbHero?.blessings?.[title] || {};
 
-        // 4. 讀取內文：保留 HTML 內的詳盡實戰解說
+        // 讀取內文：保留 HTML 內的詳盡實戰解說
         const descContainer = item.querySelector(".stardust-Gun-Reb-item-desc");
         let content = "";
         if (descContainer) {
@@ -348,13 +366,13 @@ const gunfireApp = (function () {
           content = clone.innerHTML.trim();
         }
 
-        // 5. 資源對接 (圖片優先級：資料庫 > HTML > Fallback)
+        // 資源對接 (圖片優先級：資料庫 > HTML > Fallback)
         const rawImg = item.getAttribute("data-img");
         const dbImg = dbBlessing.img;
-        const fallbackImg = `https://placehold.co/150x150/111/ff8c00?text=${encodeURIComponent(title)}`;
+        const fallbackImg = CONFIG.placeholders.blessing(title);
         const finalImg = dbImg || (rawImg && rawImg.trim() !== "" ? rawImg : fallbackImg);
 
-        // 6. 全息提示詞對接 (優先級：資料庫 desc > HTML data-tip)
+        // 全息提示詞對接 (優先級：資料庫 desc > HTML data-tip)
         const rawTip = item.getAttribute("data-tip") || "";
         const finalTip = dbBlessing.desc || rawTip || "";
 
@@ -377,13 +395,8 @@ const gunfireApp = (function () {
       });
 
       container.innerHTML = htmlOutput;
-
-      // 綁定全息提示框與燈箱事件
-      setTimeout(() => {
-        this.initLightbox();
-        // 如果 initHoloTips 沒有在全域自動綁定，這確保動態生成的元件也能觸發
-      }, 100);
     },
+
     /**
      * [模組] 覺醒/天賦卡片網格渲染器
      */
@@ -391,9 +404,7 @@ const gunfireApp = (function () {
       const grids = document.querySelectorAll(".stardust-Gun-Reb-wiki-grid");
       if (grids.length === 0) return;
 
-      // 1. [核心對接] 取得當前英雄名稱 (從剛產生的 <h2> 抓取)
-      const nameEl = document.querySelector(".stardust-Gun-Reb-hp-name-row h2");
-      const heroName = nameEl ? nameEl.textContent.trim() : "SYS_ERROR";
+      const heroName = this.cacheHeroName();
       const dbHero = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.gunfire?.Heroes?.[heroName]) || null;
 
       grids.forEach((grid) => {
@@ -402,20 +413,19 @@ const gunfireApp = (function () {
 
         let htmlOutput = "";
         items.forEach((item) => {
-          // 2. [SEO 升級] 優先讀取 H4 標籤
           const h4Tag = item.querySelector("h4");
           const title = h4Tag ? h4Tag.textContent.trim() : item.getAttribute("data-title") || "未命名覺醒";
 
-          // 3. 從資料庫讀取該覺醒資料
+          // 從資料庫讀取該覺醒資料
           const dbAwakening = dbHero?.ascensions?.[title] || {};
 
-          // 4. 資源對接 (圖片優先級：資料庫 > HTML > Fallback)
+          // 資源對接 (圖片優先級：資料庫 > HTML > Fallback)
           const rawImg = item.getAttribute("data-img");
           const dbImg = dbAwakening.img;
-          const fallbackImg = `https://placehold.co/100x100/111/00e5ff?text=${encodeURIComponent(title)}`;
+          const fallbackImg = CONFIG.placeholders.talent(title);
           const finalImg = dbImg || (rawImg && rawImg.trim() !== "" ? rawImg : fallbackImg);
 
-          // 5. 全息提示詞對接 (自動拼接 SYS_LOG 前綴)
+          // 全息提示詞對接 (自動拼接 SYS_LOG 前綴)
           const rawTip = item.getAttribute("data-tip") || "";
           const finalTip = dbAwakening.desc ? `SYS_LOG: ${dbAwakening.desc}` : rawTip;
 
@@ -423,7 +433,7 @@ const gunfireApp = (function () {
           const tagText = item.getAttribute("data-tag-text") || "";
           const tagTheme = item.getAttribute("data-tag-theme") || "";
 
-          // 6. 讀取內文機制與評價 (保留在 HTML 彈性編寫)
+          // 讀取內文機制與評價
           const mechHtml = item.querySelector(".stardust-Gun-Reb-mech")?.innerHTML || "";
           const evalHtml = item.querySelector(".stardust-Gun-Reb-eval")?.innerHTML || "";
 
@@ -455,9 +465,6 @@ const gunfireApp = (function () {
         });
         grid.innerHTML = htmlOutput;
       });
-
-      // 確保燈箱系統與全息提示框成功綁定
-      setTimeout(() => this.initLightbox(), 100);
     },
 
     /**
@@ -469,19 +476,16 @@ const gunfireApp = (function () {
       const dataItems = container.querySelectorAll(".stardust-Gun-Reb-link-item");
       if (dataItems.length === 0) return;
 
-      const nameEl = document.querySelector(".stardust-Gun-Reb-hp-name-row h2");
-      const heroName = nameEl ? nameEl.textContent.trim() : "SYS_ERROR";
+      const heroName = this.cacheHeroName();
       const dbHero = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.gunfire?.Heroes?.[heroName]) || null;
       const dbGlobal = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.gunfire?.Global) || null;
 
-      // [升級] 同時獲取圖片與品質(Tier)
       const getDbItemInfo = (itemName) => {
         if (!itemName) return { img: null, tier: null };
         const cleanName = itemName.replace(/\s*Lv\.\d+/g, "").trim();
 
         if (dbHero?.ascensions?.[cleanName]) return { img: dbHero.ascensions[cleanName].img, tier: null };
         if (dbHero?.blessings?.[cleanName]) return { img: dbHero.blessings[cleanName].img, tier: null };
-        // 抓取密卷時，把 tier 也抓出來
         if (dbGlobal?.scroll?.[cleanName]) return { img: dbGlobal.scroll[cleanName].img, tier: dbGlobal.scroll[cleanName].tier };
         if (dbGlobal?.weapon?.[cleanName]) return { img: dbGlobal.weapon[cleanName].img, tier: null };
 
@@ -503,8 +507,8 @@ const gunfireApp = (function () {
         const themeVar = this.getThemeColor(theme);
         const topClass = type === "unbound" ? "stardust-Gun-Reb-clk-top is-unbound" : "stardust-Gun-Reb-clk-top";
 
-        // 頂部圖片 (拿掉文字標籤，只留圖片與名稱)
-        const fallbackTopImg = `https://placehold.co/80x80/111/ff8c00?text=${encodeURIComponent(topName)}`;
+        // 頂部圖片
+        const fallbackTopImg = CONFIG.placeholders.linkTop(topName);
         const { img: topImg } = getDbItemInfo(topName);
         const topImgUrl = topImg || fallbackTopImg;
 
@@ -529,20 +533,13 @@ const gunfireApp = (function () {
             const isReq = itemType === "req";
             const chipClass = isReq ? "stardust-Gun-Reb-req-chip is-req" : "stardust-Gun-Reb-req-chip is-opt";
 
-            const fallbackChipImg = `https://placehold.co/60x60/111/00e5ff?text=${encodeURIComponent(itemName.substring(0, 2))}`;
+            const fallbackChipImg = CONFIG.placeholders.linkChip(itemName);
             const { img: chipImg, tier: chipTier } = getDbItemInfo(itemName);
             const chipImgUrl = chipImg || fallbackChipImg;
 
-            // [新增] 依據 Tier 配置顏色變數
             let tierStyle = "";
             if (chipTier) {
-              const tierColors = {
-                rare: "#b026ff", // 紫色
-                legendary: "#ffcc00", // 金色
-                normal: "#00e5ff", // 藍色
-                cursed: "#ff3333", // 紅色
-              };
-              const color = tierColors[chipTier.toLowerCase()];
+              const color = CONFIG.tierColors[chipTier.toLowerCase()];
               if (color) tierStyle = `style="--chip-tier-color: ${color};"`;
             }
 
@@ -578,8 +575,7 @@ const gunfireApp = (function () {
     },
 
     /**
-     * [模組] 相關成就圖鑑渲染 (Data-Driven 升級版 - 移除 Tooltip)
-     * 從 Global.achievement 抓圖，並「完全保留」使用者的手寫攻略文字。
+     * [模組] 相關成就圖鑑渲染
      */
     renderAchievements() {
       const container = document.getElementById("stardust-Gun-Reb-ach-container");
@@ -588,27 +584,19 @@ const gunfireApp = (function () {
       const items = container.querySelectorAll(".stardust-Gun-Reb-ach-item");
       if (items.length === 0) return;
 
-      // 1. 取得全局成就資料庫
       const dbAch = (typeof STARDUST_ASSETS !== "undefined" && STARDUST_ASSETS.gunfire?.Global?.achievement) || {};
 
       let cardsHtml = `<div class="stardust-Gun-Reb-ach-grid-2col">`;
 
       items.forEach((item) => {
-        // 2. [SEO 核心] 優先讀取 H4 作為關鍵字
         const h4Tag = item.querySelector("h4");
         const title = h4Tag ? h4Tag.textContent.trim() : "SYS_ERROR";
-
-        // 3. 從資料庫獲取資料
         const dbData = dbAch[title] || {};
-
-        // 使用中文標題作為 ID (確保 localStorage 與成就過濾器正常運作)
         const id = item.getAttribute("data-ach-id") || title;
 
-        // 圖片對接：優先讀取資料庫 > 預設佔位圖
-        const fallbackImg = `https://placehold.co/100x100/111/ffcc00?text=${encodeURIComponent(title)}`;
+        const fallbackImg = CONFIG.placeholders.achievement(title);
         const img = dbData.img || fallbackImg;
 
-        // 4. [防呆防覆寫] 讀取原本在 HTML 內精心寫好的描述與攻略提示
         const descEl = item.querySelector(".stardust-Gun-Reb-ach-desc");
         const desc = descEl ? descEl.innerHTML : "";
 
@@ -650,9 +638,6 @@ const gunfireApp = (function () {
       cardsHtml += `</div>`;
       container.innerHTML = cardsHtml;
 
-      // 觸發燈箱初始化
-      setTimeout(() => this.initLightbox(), 100);
-
       // 成就卡片渲染完畢後，綁定 localStorage 進度儲存與讀取系統
       this.syncAchievements();
     },
@@ -667,17 +652,13 @@ const gunfireApp = (function () {
       const items = container.querySelectorAll(".stardust-Gun-Reb-patch-item");
       if (items.length === 0) return;
 
-      // 建立時間軸內部導引線容器
       let logsHtml = `<div class="stardust-Gun-Reb-patch-inner">`;
 
       items.forEach((item) => {
-        // 抓取語法糖數據，若未填寫則給予預設值
         const version = item.getAttribute("data-version") || "v?.?.?";
         const date = item.getAttribute("data-date") || "YYYY.MM.DD";
-        // 支援從 data-content 讀取，或直接讀取標籤內的 HTML，增加彈性
         const content = item.getAttribute("data-content") || item.innerHTML || "";
 
-        // 封裝賽博風卡片結構
         logsHtml += `
           <div class="stardust-Gun-Reb-patch-entry">
             <div class="stardust-Gun-Reb-patch-node"></div>
@@ -693,16 +674,16 @@ const gunfireApp = (function () {
       });
 
       logsHtml += `</div>`;
-      container.innerHTML = logsHtml; // 覆寫並渲染
+      container.innerHTML = logsHtml;
     },
+
     /**
-     * [對接] 成就進度儲存與過濾器綁定 (實際生效版本)
-     * 負責計算完成度進度條、同步 localStorage 以及頁籤過濾邏輯
+     * [對接] 成就進度儲存與過濾器綁定
      */
     syncAchievements() {
       const gameContainer = document.querySelector(".guide-container");
       const gameId = gameContainer?.getAttribute("data-game-id") || "default_game";
-      const STORAGE_KEY = `ach_data_${gameId}`;
+      const STORAGE_KEY = `${CONFIG.storageKeyPrefix}${gameId}`;
 
       let savedData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
       const checkboxes = document.querySelectorAll(".stardust-Gun-Reb-ach-checkbox");
@@ -748,7 +729,6 @@ const gunfireApp = (function () {
           }
         });
 
-        // 計算並渲染進度百分比
         const pct = total === 0 ? 0 : Math.round((checkedCount / total) * 100);
         const fill = document.getElementById("stardust-Gun-Reb-ach-progress-fill");
         const text = document.getElementById("stardust-Gun-Reb-ach-progress-text");
@@ -781,28 +761,26 @@ const gunfireApp = (function () {
       });
 
       // 「重置進度」按鈕防呆機制 (需點擊兩次確認，3秒內未確認則還原狀態)
+      // 移除原 redundant cloneNode，使用一個 flag 管理點擊狀態
       const clearBtn = document.getElementById("stardust-Gun-Reb-clear-ach-btn");
       let clearConfirmState = false;
       let clearTimer;
       if (clearBtn) {
-        const newClearBtn = clearBtn.cloneNode(true);
-        clearBtn.parentNode.replaceChild(newClearBtn, clearBtn);
-
-        newClearBtn.addEventListener("click", (e) => {
+        clearBtn.addEventListener("click", () => {
           if (!clearConfirmState) {
             clearConfirmState = true;
-            newClearBtn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> 確定重置？';
-            newClearBtn.classList.add("is-confirming");
+            clearBtn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> 確定重置？';
+            clearBtn.classList.add("is-confirming");
             clearTimer = setTimeout(() => {
               clearConfirmState = false;
-              newClearBtn.innerHTML = '<i class="fa-solid fa-rotate-left"></i> 重置';
-              newClearBtn.classList.remove("is-confirming");
+              clearBtn.innerHTML = '<i class="fa-solid fa-rotate-left"></i> 重置';
+              clearBtn.classList.remove("is-confirming");
             }, 3000);
           } else {
             clearTimeout(clearTimer);
             clearConfirmState = false;
-            newClearBtn.innerHTML = '<i class="fa-solid fa-rotate-left"></i> 重置';
-            newClearBtn.classList.remove("is-confirming");
+            clearBtn.innerHTML = '<i class="fa-solid fa-rotate-left"></i> 重置';
+            clearBtn.classList.remove("is-confirming");
 
             localStorage.removeItem(STORAGE_KEY);
             savedData = {};
@@ -812,8 +790,7 @@ const gunfireApp = (function () {
         });
       }
 
-      // 初始化執行一次狀態計算
-      updateProgressAndFilter();
+      updateProgressAndFilter(); // 初始化執行
 
       // 監聽跨分頁的資料同步
       window.addEventListener("storage", (e) => {
@@ -829,7 +806,7 @@ const gunfireApp = (function () {
     },
 
     /**
-     * 初始化頁籤切換邏輯 (重置所有狀態並啟用指定目標)
+     * 初始化頁籤切換邏輯
      */
     initTabs() {
       const tabBtns = document.querySelectorAll(".stardust-Gun-Reb-tab-btn");
@@ -839,10 +816,9 @@ const gunfireApp = (function () {
         btn.addEventListener("click", () => {
           document.querySelectorAll(".stardust-Gun-Reb-tab-btn").forEach((b) => b.classList.remove("active"));
           document.querySelectorAll(".stardust-Gun-Reb-tab-content").forEach((c) => {
-            // 重置動畫，強制重新觸發 CSS transition/animation
             c.classList.remove("active");
             c.style.animation = "none";
-            c.offsetHeight;
+            c.offsetHeight; // 觸發重繪 (Reflow)
             c.style.animation = null;
           });
           btn.classList.add("active");
@@ -857,7 +833,6 @@ const gunfireApp = (function () {
 
     /**
      * 全息提示框 (Hologram Tooltip) 初始化
-     * 全局監聽帶有 `data-tip` 屬性的元素，自動生成跟隨滑鼠的提示框
      */
     initHoloTips() {
       let tipBox = document.getElementById("stardust-Gun-Reb-hologram-tip");
@@ -886,7 +861,6 @@ const gunfireApp = (function () {
         tipBox.style.opacity = "1";
         tipBox.style.transform = "translateY(0)";
 
-        // 取得滑鼠座標並計算位移量
         const rect = target.getBoundingClientRect();
         tipBox.style.left = `${rect.left + window.scrollX}px`;
         tipBox.style.top = `${rect.top + window.scrollY - 35}px`;
@@ -901,33 +875,9 @@ const gunfireApp = (function () {
     },
 
     /**
-     * 圖片燈箱系統初始化
-     * 為所有指定的觸發器圖片綁定點擊放大效果
-     */
-    initLightbox() {
-      const lightboxModal = document.getElementById("combat-lightbox");
-      const lightboxImg = document.getElementById("combat-lightbox-img");
-      if (lightboxModal && lightboxImg) {
-        document.querySelectorAll(".stardust-Gun-Reb-lightbox-trigger").forEach((img) => {
-          img.style.cursor = "zoom-in";
-          const newImg = img.cloneNode(true);
-          // 使用 cloneNode 替換舊節點，避免重複綁定 EventListener 導致點擊觸發多次
-          img.parentNode.replaceChild(newImg, img);
-          newImg.addEventListener("click", (e) => {
-            e.stopPropagation();
-            lightboxImg.src = e.target.src;
-            lightboxModal.classList.add("show");
-          });
-        });
-      }
-    },
-
-    /**
      * 橫向滾動容器「滑鼠拖曳」功能初始化
-     * 讓桌機版用戶可以像手機一樣按住並拖曳內容
      */
     initDragToScroll() {
-      // 擴充選取器：加入 .gr-grid 與其他橫向卷軸容器，確保全域支援拖曳
       const carousels = document.querySelectorAll(".stardust-Gun-Reb-link-carousel, .stardust-Gun-Reb-ach-filter-tabs, .gr-grid, .carousel-container, .weapon-carousel");
       let isDown = false;
       let startX;
@@ -940,7 +890,7 @@ const gunfireApp = (function () {
           currentGrid = grid;
           startX = e.pageX - grid.offsetLeft;
           scrollLeft = grid.scrollLeft;
-          window.getSelection().removeAllRanges(); // 防止拖曳時反白文字
+          window.getSelection().removeAllRanges();
         });
       });
 
@@ -962,9 +912,8 @@ const gunfireApp = (function () {
       window.addEventListener("mousemove", (e) => {
         if (!isDown || !currentGrid) return;
         const x = e.pageX - currentGrid.offsetLeft;
-        const walk = (x - startX) * 1.5; // 調整拖曳滑動的速度係數
+        const walk = (x - startX) * 1.5;
 
-        // 設定超過 5px 的移動才判定為拖曳，避免誤觸點擊
         if (Math.abs(x - startX) > 5) {
           currentGrid.classList.add("is-dragging");
           currentGrid.style.cursor = "grabbing";
@@ -988,6 +937,5 @@ const gunfireApp = (function () {
     });
   }
 
-  // 回傳模組介面 (可選)
   return StardustGunReb;
-})(); // IIFE 結束
+})();
